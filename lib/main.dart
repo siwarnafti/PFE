@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 6), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) =>   SignInScreen()),
+        MaterialPageRoute(builder: (context) => const   OnboardingScreen()),
       );
     });
   }
@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(height: 20),
             LinearProgressIndicator(
               backgroundColor: Colors.white,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
             ),
           ],
         ),
