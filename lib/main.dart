@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/views/forgot_password_screen.dart';
+import 'package:mobile_app/ui/views/home_screen.dart';
 import 'dart:async';
 
 import 'package:mobile_app/ui/views/on_boarding_screen.dart';
@@ -38,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 6), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()),
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
       );
     });
   }
