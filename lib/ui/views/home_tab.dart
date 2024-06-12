@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/ui/views/favorites_screen.dart';
 
 import 'home_screen.dart';
 
@@ -13,7 +14,7 @@ class _HomeTabState extends State<HomeTab> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
     const HomeScreen(),
-    const HomeScreen(),
+    const FavoritesScreen(),
     const HomeScreen(),
   ];
   @override

@@ -8,7 +8,8 @@ class OfferIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       width: isSelected ? 26.0 : 10.0,
       height: 10.0,
       decoration: BoxDecoration(
