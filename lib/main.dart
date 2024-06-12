@@ -23,7 +23,6 @@ class CareerHiveApp extends StatelessWidget {
   }
 }
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -38,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 6), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const   SignInScreen()),
+        MaterialPageRoute(builder: (context) => const OnboardingScreen()),
       );
     });
   }
@@ -77,6 +76,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
-
-
