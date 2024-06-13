@@ -48,7 +48,7 @@ final List<Offer> fakeOffers = [
     imageUrl: 'assets/App_Creators_LLC.png',
     salary: 1400,
     location: 'Austin',
-    category: ['Mobile Development', 'Full Time', 'Flutter'],
+    category: ['Mobile Development', 'Full Time', ],
     id: '5',
   ),
 ];
