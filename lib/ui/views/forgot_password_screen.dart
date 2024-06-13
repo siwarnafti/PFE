@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/ui/presentation/presentation.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
   const ForgotPasswordScreen({super.key});
@@ -9,8 +10,15 @@ class ForgotPasswordScreen extends StatelessWidget {
     final deviceWidth = MediaQuery.sizeOf(context).width;
     return 
      Scaffold(
-      appBar: AppBar(
-          title: Row(
+     
+
+        body: Container(
+          padding: EdgeInsets.symmetric(horizontal: deviceWidth*0.05,vertical: deviceWidth*0.05),
+          child: Column(children: [
+            xxlSpacer(),
+
+
+            Row(
             children: [
               GestureDetector(
                 onTap: () => Navigator.pop(context),
@@ -25,11 +33,7 @@ class ForgotPasswordScreen extends StatelessWidget {
              
             ],
           ),
-        ),
-
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: deviceWidth*0.05,vertical: deviceWidth*0.05),
-          child: Column(children: [
+          mdSpacer(),
             
             
             
@@ -83,6 +87,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   },
                   child: Container(
                     height: deviceHeight * 0.06,
+                    width: deviceWidth*0.7,
                     decoration: BoxDecoration(
                       color: const Color(0xFF5E569B),
                       borderRadius: BorderRadius.all(
