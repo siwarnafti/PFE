@@ -9,9 +9,11 @@ import '../models/offer.dart';
 
 class FavoriteViewModel extends ChangeNotifier {
   final Map<String, List<Offer>> _favoriteOffers = {};
-  final List<Offer> dummyOffers = fakeOffers;
+  final List<Offer> _dummyOffers = fakeOffers;
 
   Map<String, List<Offer>> get favoriteOffers => _favoriteOffers;
+
+  List<Offer> get dummyOffers => _dummyOffers;
 
   String _getCurrentDateKey() {
     final DateTime now = DateTime.now();
@@ -70,6 +72,9 @@ class FavoriteViewModel extends ChangeNotifier {
       favoriteOffersMap.forEach((key, value) {
         _favoriteOffers[key] = (value as List).map((e) => Offer.fromJson(e)).toList();
       });
+      for (var offer in dummyOffers) {
+        offer.isFavorite = _favoriteOffers.values.any((list) => list.any((o) => o.id == offer.id));
+      }
       notifyListeners();
     }
   }

@@ -53,14 +53,15 @@ class OfferCard extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                GestureDetector(
-                  onTap: () => offer.isFavorite
-                      ? context.read<FavoriteViewModel>().removeFavoriteOffer(offer)
-                      : context.read<FavoriteViewModel>().addFavoriteOffer(offer),
-                  child: Icon(
-                    offer.isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
-                    color: offer.isFavorite ? Colors.red : Colors.grey.shade500,
-                    size: 28.0,
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () => offer.isFavorite
+                        ? context.read<FavoriteViewModel>().removeFavoriteOffer(offer)
+                        : context.read<FavoriteViewModel>().addFavoriteOffer(offer),
+                    child: Icon(
+                      offer.isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
+                      color: offer.isFavorite ? Colors.red : Colors.grey.shade500,
+                    ),
                   ),
                 ),
               ],

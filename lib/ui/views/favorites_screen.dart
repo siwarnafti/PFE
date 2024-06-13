@@ -210,12 +210,14 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   ],
                 ),
                 const Spacer(),
-                GestureDetector(
-                  onTap: () => context.read<FavoriteViewModel>().removeFavoriteOffer(offer),
-                  child: const Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                    size: 28.0,
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () => context.read<FavoriteViewModel>().removeFavoriteOffer(offer),
+                    child: const Icon(
+                      Icons.favorite,
+                      color: Colors.red,
+                      size: 28.0,
+                    ),
                   ),
                 ),
               ],
@@ -258,8 +260,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _appBar(),
               xxlSpacer(),
+              _appBar(),
+              xlSpacer(),
               _searchWidget(),
               smSpacer(),
               _searchItemsWidget(),
