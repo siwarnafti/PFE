@@ -37,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              'CareerHive',
+              'FAST HIRE',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 32,

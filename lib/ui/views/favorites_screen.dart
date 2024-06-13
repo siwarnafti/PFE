@@ -43,16 +43,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            GestureDetector(
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                padding: const EdgeInsets.all(Dimensions.xxs),
-                decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.withOpacity(0.1)),
-                child: const Icon(Icons.arrow_back),
-              ),
-            ),
+           
             const Spacer(),
-            Text('My Favorite', style: TextStyles.title2Bold()),
+            Text('My Favorite', style: TextStyles.title2Bold(),textAlign: TextAlign.center,),
             const Spacer(),
             IconButton(onPressed: () {}, icon: const Icon(Icons.filter_list_outlined), iconSize: Dimensions.xmd),
           ],

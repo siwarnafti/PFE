@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:mobile_app/ui/presentation/presentation.dart';
+import 'package:mobile_app/ui/presentation/theme/paddings.dart';
 import 'package:mobile_app/ui/views/signin_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -17,10 +20,11 @@ class OnboardingScreen extends StatelessWidget {
           width: deviceWidth,
           color: const Color(0xFF5E569B),
         ),
+        Align(alignment: Alignment.topCenter,child: Image.asset("assets/app_logo.jpeg"),),
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            height: deviceHeight * 0.4,
+            height: deviceHeight * 0.5,
             padding: EdgeInsets.all(deviceWidth * 0.1),
             width: deviceWidth,
             decoration: const BoxDecoration(
@@ -34,14 +38,14 @@ class OnboardingScreen extends StatelessWidget {
               children: [
                 const Text(
                   "Discover job",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
                 ),
                 SizedBox(
-                  height: deviceHeight * 0.004,
+                  height: deviceHeight * 0.02,
                 ),
                 const Text(
                   "Opportunites Effotlessly!",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
                 ),
                 SizedBox(
                   height: deviceHeight * 0.01,
@@ -49,66 +53,62 @@ class OnboardingScreen extends StatelessWidget {
                 const Text(
                   "welcome to our app in which you can sing as en employee or as a society",
                   textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 14),
                 ),
-                Expanded(
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                            margin: EdgeInsets.only(right: deviceWidth * 0.04),
-                            height: deviceHeight * 0.06,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF5E569B),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(deviceHeight * 0.1),
-                              ),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "Get Started",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
+                mdSpacer(),
+                Column(
+                
+                  children: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        padding: Paddings.allSm,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF5E569B),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(deviceHeight * 0.1),
+                          ),
+                        ),
+                        child: const Center(
+                          child: Text(
+                            "Sign As an Entreprise",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17),
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: deviceHeight * 0.1,
+                    ),
+                    xxxsSpacer(),
+                    GestureDetector(
+                      onTap: () {
+                         Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignInScreen()),
+                    );
+                                    
+                       
+                      },
+                      child: Container(
+padding: Paddings.allSm,                        
+                        decoration: BoxDecoration(
+                            color: const Color(0xFF5E569B),
+                            borderRadius: BorderRadius.all(
+                                Radius.circular(deviceHeight * 0.1))),
+                        child: const Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Sign As an Employee",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,fontSize: 17),
+                            )),
                       ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                             Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const SignInScreen()),
-      );
-
-                           
-                          },
-                          child: Container(
-                            height: deviceHeight * 0.06,
-                            decoration: BoxDecoration(
-                                color: const Color(0xFF5E569B),
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(deviceHeight * 0.1))),
-                            child: const Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  "I am an Employee",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold),
-                                )),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
+                xsSpacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
