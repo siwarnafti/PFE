@@ -90,11 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             const Spacer(),
-            IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.search),
-              iconSize: Dimensions.xmd,
-            ),
+          
             Stack(
               children: [
                 IconButton(

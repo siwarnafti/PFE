@@ -9,7 +9,7 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final deviceHeight = MediaQuery.sizeOf(context).height;
+    final deviceHeight = MediaQuery.sizeOf(context).height;   //size tel responsive
     final deviceWidth = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
@@ -59,7 +59,7 @@ class OnboardingScreen extends StatelessWidget {
                 Column(
                 
                   children: [
-                    GestureDetector(
+                    GestureDetector(   //fonctionnialité
                       onTap: () {},
                       child: Container(
                         padding: Paddings.allSm,

@@ -14,7 +14,7 @@ class CareerHiveApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
-    return MaterialApp(
+    return MaterialApp(     //for run
       title: 'CareerHive',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

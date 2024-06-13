@@ -6,7 +6,7 @@ final List<Company> fakeCompanies = [
     imageUrl: 'assets/KickStarter_Studio.jpeg',
     openSlots: 6,
     id: '1',
-  ),
+  ),// pour backend
   Company(
     name: 'Tech Innovators Inc',
     imageUrl: 'assets/Tech_Innovators_Inc.jpeg',
