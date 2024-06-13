@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mobile_app/ui/presentation/extensions/list_spacing.dart';
+import 'package:provider/provider.dart';
 
-
+import '../../core/models/offer.dart';
+import '../../core/viewmodels/offer_view_model.dart';
 import '../presentation/presentation.dart';
 
 class OfferCard extends StatelessWidget {
-  const OfferCard({super.key});
+  const OfferCard({super.key, required this.offer});
+
+  final Offer offer;
 
   @override
   Widget build(BuildContext context) {
@@ -31,77 +34,84 @@ class OfferCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 20,
-                  backgroundImage: AssetImage('assets/avatar_user.jpg'),
+                  backgroundImage: AssetImage(offer.imageUrl),
                 ),
-                xxsSpacer(),
+                xxxsSpacer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Jr. Front-End Designer',
+                      offer.title.length > 20 ? '${offer.title.substring(0, 20)}...' : offer.title,
                       style: TextStyles.body1Medium(),
                     ),
                     Text(
-                      'KickStarter Studio',
+                      offer.company,
                       style: TextStyles.calloutMedium(color: Colors.grey.shade500),
                     ),
                   ],
                 ),
                 const Spacer(),
                 Expanded(
-                  child: Icon(
-                    Icons.favorite_border_rounded,
-                    color: Colors.grey.shade500,
-
+                  child: GestureDetector(
+                    onTap: () => offer.isFavorite
+                        ? context.read<FavoriteViewModel>().removeFavoriteOffer(offer)
+                        : context.read<FavoriteViewModel>().addFavoriteOffer(offer),
+                    child: Icon(
+                      offer.isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
+                      color: offer.isFavorite ? Colors.red : Colors.grey.shade500,
+                    ),
                   ),
                 ),
               ],
             ),
             smSpacer(),
-            Padding(
-              padding: Paddings.horizontalSm,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text('Front end', style: TextStyles.footnoteBold(color: Colors.grey.shade400)),
-                  Text('Full Time', style: TextStyles.footnoteBold(color: Colors.grey.shade400)),
-                  Text('Gsap', style: TextStyles.footnoteBold(color: Colors.grey.shade400)),
-                ].withSpacing(smSpacer()),
-              ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: offer.category
+                  .map(
+                    (e) => Text(e, style: TextStyles.footnoteBold(color: Colors.grey.shade400)),
+                  )
+                  .toList()
+                  .withSpacing(smSpacer()),
             ),
             xsSpacer(),
             Text(
-              'We are looking for a Jr. Front-End Designer to join our team.We are looking for a Jr. Front-End Designer to join our team.',
+              offer.description,
               style: TextStyles.footnoteMedium(
                 color: Colors.grey.shade300,
               ),
             ),
             xsSpacer(),
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Row(
               children: [
-
-                Row(children: [  Icon(
+                Icon(
                   Icons.location_on_outlined,
                   color: Colors.grey.shade500,
                   size: 20.0,
                 ),
-                xxxxsSpacer(),
+                xxsSpacer(),
                 Text(
-                  'Ho Chi Minh City',
+                  offer.location.length > 15 ? '${offer.location.substring(0, 15)}...' : offer.location,
                   style: TextStyles.calloutMedium(color: Colors.grey.shade300),
-                ),],),
-
+                ),
                 const Spacer(),
-               Text(
-                         '\$180,000 ',
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: '\$${offer.salary} ',
                         style: TextStyles.body1Bold(color: Colors.black),
                       ),
-                      // Text(
-                      //    '/year',
-                      //   style: TextStyles.calloutMedium(color: Colors.grey.shade300),
-                      // ),
+                      TextSpan(
+                        text: '/year',
+                        style: TextStyles.calloutMedium(color: Colors.grey.shade300),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ],
