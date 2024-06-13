@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:mobile_app/ui/presentation/extensions/list_spacing.dart';
 
 
@@ -49,10 +50,12 @@ class OfferCard extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                Icon(
-                  Icons.favorite_border_rounded,
-                  color: Colors.grey.shade500,
-                  size: 28.0,
+                Expanded(
+                  child: Icon(
+                    Icons.favorite_border_rounded,
+                    color: Colors.grey.shade500,
+                    
+                  ),
                 ),
               ],
             ),
@@ -76,33 +79,29 @@ class OfferCard extends StatelessWidget {
               ),
             ),
             xsSpacer(),
-            Row(
+            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
+                
+                Row(children: [  Icon(
                   Icons.location_on_outlined,
                   color: Colors.grey.shade500,
                   size: 20.0,
                 ),
-                xxsSpacer(),
+                xxxxsSpacer(),
                 Text(
                   'Ho Chi Minh City',
                   style: TextStyles.calloutMedium(color: Colors.grey.shade300),
-                ),
+                ),],),
+              
                 const Spacer(),
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: '\$180,000 ',
+               Text(
+                         '\$180,000 ',
                         style: TextStyles.body1Bold(color: Colors.black),
                       ),
-                      TextSpan(
-                        text: '/year',
-                        style: TextStyles.calloutMedium(color: Colors.grey.shade300),
-                      ),
-                    ],
-                  ),
-                ),
+                      // Text(
+                      //    '/year',
+                      //   style: TextStyles.calloutMedium(color: Colors.grey.shade300),
+                      // ),
               ],
             ),
           ],

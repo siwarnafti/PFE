@@ -180,10 +180,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   ],
                 ),
                 const Spacer(),
-                const Icon(
-                  Icons.favorite,
-                  color: Colors.red,
-                  size: 28.0,
+                const Expanded(
+                  child:  Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                    
+                  ),
                 ),
               ],
             ),
@@ -205,10 +207,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         text: '\$240 - \$2560',
                         style: TextStyles.body1Bold(color: Colors.black),
                       ),
-                      TextSpan(
-                        text: '/Month',
-                        style: TextStyles.calloutMedium(color: Colors.grey.shade300),
-                      ),
+                      // TextSpan(
+                      //   text: '/Month',
+                      //   style: TextStyles.calloutMedium(color: Colors.grey.shade300),
+                      // ),
                     ],
                   ),
                 ),
@@ -225,8 +227,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _appBar(),
               xxlSpacer(),
+              _appBar(),
+              xlSpacer(),
               _searchWidget(),
               smSpacer(),
               _searchItemsWidget(),

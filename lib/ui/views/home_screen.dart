@@ -340,6 +340,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              xxlSpacer(),
               _appBar(),
               smSpacer(),
               _searchWidget(),
