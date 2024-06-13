@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/ui/views/forgot_password_screen.dart';
+import 'package:mobile_app/ui/views/home_tab.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -120,7 +122,13 @@ class _SignInScreenState extends State<SignInScreen> {
               Align
               ( alignment: Alignment.centerRight,
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+
+                     Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const ForgotPasswordScreen()),
+      );
+                  },
                   child: const Text('forgot password',style: TextStyle(color: Colors.red,fontSize: 15,fontWeight: FontWeight.bold),),
                 ),
               ),
@@ -128,11 +136,16 @@ class _SignInScreenState extends State<SignInScreen> {
                 height: deviceHeight * 0.1,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                
+                 Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeTab()),
+      );},
                 child: Container(
                   height: deviceHeight * 0.06,
                   decoration: BoxDecoration(
-                    color: Colors.purple,
+                    color: const Color(0xFF5E569B),
                     borderRadius: BorderRadius.all(
                       Radius.circular(deviceHeight * 0.1),
                     ),
@@ -223,7 +236,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: const Text(
                       "Register",
                       style: TextStyle(
-                          color: Colors.purple, fontWeight: FontWeight.bold),
+                          color: const Color(0xFF5E569B), fontWeight: FontWeight.bold),
                     ),
                   )
                 ],

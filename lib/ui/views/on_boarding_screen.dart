@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/ui/views/signin_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -14,7 +15,7 @@ class OnboardingScreen extends StatelessWidget {
         Container(
           height: deviceHeight,
           width: deviceWidth,
-          color: Colors.purple,
+          color: const Color(0xFF5E569B),
         ),
         Align(
           alignment: Alignment.bottomCenter,
@@ -59,7 +60,7 @@ class OnboardingScreen extends StatelessWidget {
                             margin: EdgeInsets.only(right: deviceWidth * 0.04),
                             height: deviceHeight * 0.06,
                             decoration: BoxDecoration(
-                              color: Colors.purple,
+                              color: const Color(0xFF5E569B),
                               borderRadius: BorderRadius.all(
                                 Radius.circular(deviceHeight * 0.1),
                               ),
@@ -81,13 +82,17 @@ class OnboardingScreen extends StatelessWidget {
                       Expanded(
                         child: GestureDetector(
                           onTap: () {
+                             Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const SignInScreen()),
+      );
 
                            
                           },
                           child: Container(
                             height: deviceHeight * 0.06,
                             decoration: BoxDecoration(
-                                color: Colors.purple,
+                                color: const Color(0xFF5E569B),
                                 borderRadius: BorderRadius.all(
                                     Radius.circular(deviceHeight * 0.1))),
                             child: const Align(
@@ -118,7 +123,7 @@ class OnboardingScreen extends StatelessWidget {
                       child: const Text(
                         "Register",
                         style: TextStyle(
-                            color: Colors.purple, fontWeight: FontWeight.bold),
+                            color: const Color(0xFF5E569B), fontWeight: FontWeight.bold),
                       ),
                     )
                   ],

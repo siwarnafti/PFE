@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mobile_app/ui/views/on_boarding_screen.dart';
+import 'package:mobile_app/ui/views/signin_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/viewmodels/offer_view_model.dart';
@@ -21,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 6), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const HomeTab()),
+        MaterialPageRoute(builder: (context) => const OnboardingScreen()),
       );
     });
   }
@@ -29,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: Colors.purple,
+      backgroundColor: const Color(0xFF5E569B),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +54,7 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(height: 20),
             LinearProgressIndicator(
               backgroundColor: Colors.white,
-              valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+              valueColor: AlwaysStoppedAnimation<Color>(const Color(0xFF5E569B)),
             ),
           ],
         ),
