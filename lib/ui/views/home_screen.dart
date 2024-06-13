@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile_app/core/viewmodels/offer_view_model.dart';
 import 'package:mobile_app/ui/presentation/extensions/list_spacing.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
+import 'package:provider/provider.dart';
 
+import '../../core/fake_data/company.dart';
 import '../presentation/presentation.dart';
 import '../widgets/company_card.dart';
 import '../widgets/customLimitedDropDown.dart';
@@ -268,7 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: List.generate(
-                  3,
+                  context.watch<FavoriteViewModel>().dummyOffers.length,
                   (index) => OfferIndicator(
                     key: ValueKey(index),
                     isSelected: index == selectedIndex,
@@ -294,8 +297,10 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           items: List.generate(
-            3,
-            (index) => const OfferCard(),
+            5,
+            (index) => OfferCard(
+              offer: context.watch<FavoriteViewModel>().dummyOffers[index],
+            ),
           ).toList(),
         ),
       ];
@@ -327,7 +332,7 @@ class _HomeScreenState extends State<HomeScreen> {
             controller: _scrollController,
             children: List.generate(
               5,
-              (index) => const CompanyCard(),
+              (index) => CompanyCard(company: fakeCompanies[index]),
             ).toList(),
           ),
         ),

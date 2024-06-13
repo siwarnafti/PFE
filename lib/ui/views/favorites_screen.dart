@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
+import 'package:mobile_app/ui/presentation/extensions/list_spacing.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
+import 'package:provider/provider.dart';
 
+import '../../core/models/offer.dart';
+import '../../core/viewmodels/offer_view_model.dart';
 import '../presentation/presentation.dart';
 
 class FavoritesScreen extends StatefulWidget {
@@ -25,6 +31,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     'Commission',
     'Volunteer',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    initializeDateFormatting();
+  }
 
   Widget _appBar() => Padding(
         padding: const EdgeInsets.symmetric(horizontal: Dimensions.sm, vertical: Dimensions.xxs),
@@ -120,29 +132,47 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         ),
       );
 
-  Widget _favoriteOffersWidget() => Column(
-        children: [
-          _favoriteOfferInDay(),
-          mdSpacer(),
-          _favoriteOfferInDay(),
-        ],
-      );
-
-  Widget _favoriteOfferInDay() => Padding(
-        padding: Paddings.horizontalSm,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _favoriteOffersWidget() {
+    final favoriteViewModel = context.watch<FavoriteViewModel>();
+    return Column(
+      children: favoriteViewModel.favoriteOffers.keys.map((date) {
+        return Column(
           children: [
-            Text('18 June, 2021', style: TextStyles.body1Medium(color: Colors.grey.shade500)),
+            _favoriteOfferInDay(date: date),
             mdSpacer(),
-            _favoriteOfferCard(),
-            mdSpacer(),
-            _favoriteOfferCard(),
           ],
-        ),
-      );
+        );
+      }).toList(),
+    );
+  }
 
-  Widget _favoriteOfferCard() => Container(
+  Widget _favoriteOfferInDay({required String date}) {
+    final favoriteViewModel = context.watch<FavoriteViewModel>();
+    DateTime parsedDate = DateTime.parse(date);
+    String formattedDate = DateFormat("dd MMMM, yyyy", "fr").format(parsedDate);
+    return Padding(
+      padding: Paddings.horizontalSm,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(formattedDate, style: TextStyles.body1Medium(color: Colors.grey.shade500)),
+          mdSpacer(),
+          Column(
+            children: favoriteViewModel.favoriteOffers[date]!
+                .map((offer) {
+                  return _favoriteOfferCard(offer);
+                })
+                .toList()
+                .withSpacing(
+                  mdSpacer(),
+                ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _favoriteOfferCard(Offer offer) => Container(
         padding: Paddings.allMd,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -161,29 +191,32 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           children: [
             Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 20,
-                  backgroundImage: AssetImage('assets/avatar_user.jpg'),
+                  backgroundImage: AssetImage(offer.imageUrl),
                 ),
                 xxsSpacer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Front End Developer',
+                      offer.title.length > 20 ? '${offer.title.substring(0, 20)}...' : offer.title,
                       style: TextStyles.body1Medium(),
                     ),
                     Text(
-                      'Twitter,In New York',
+                      offer.company,
                       style: TextStyles.calloutMedium(color: Colors.grey.shade500),
                     ),
                   ],
                 ),
                 const Spacer(),
-                const Icon(
-                  Icons.favorite,
-                  color: Colors.red,
-                  size: 28.0,
+                GestureDetector(
+                  onTap: () => context.read<FavoriteViewModel>().removeFavoriteOffer(offer),
+                  child: const Icon(
+                    Icons.favorite,
+                    color: Colors.red,
+                    size: 28.0,
+                  ),
                 ),
               ],
             ),
@@ -194,7 +227,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 const Icon(Icons.location_on_outlined, color: Colors.grey, size: Dimensions.md),
                 xxxsSpacer(),
                 Text(
-                  'Ho Chi Minh City',
+                  offer.location,
                   style: TextStyles.calloutMedium(color: Colors.grey),
                 ),
                 const Spacer(),
@@ -202,7 +235,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: '\$240 - \$2560',
+                        text: '\$${offer.salary ~/ 12} ',
                         style: TextStyles.body1Bold(color: Colors.black),
                       ),
                       TextSpan(

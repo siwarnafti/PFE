@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../core/viewmodels/offer_view_model.dart';
 import 'home_tab.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,6 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    context.read<FavoriteViewModel>().loadFavoriteOffers();
     Timer(const Duration(seconds: 6), () {
       Navigator.pushReplacement(
         context,

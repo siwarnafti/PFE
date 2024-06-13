@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/views/splash_screen.dart';
+import 'package:provider/provider.dart';
+
+import 'core/viewmodels/offer_view_model.dart';
 
 void main() {
-  runApp(const CareerHiveApp());
+  runApp(ChangeNotifierProvider(create: (context) => FavoriteViewModel(), child: const CareerHiveApp()));
 }
 
 class CareerHiveApp extends StatelessWidget {
@@ -10,6 +13,7 @@ class CareerHiveApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
     return MaterialApp(
       title: 'CareerHive',
       debugShowCheckedModeBanner: false,

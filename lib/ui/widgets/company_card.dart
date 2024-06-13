@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/presentation/presentation.dart';
 
+import '../../core/models/company.dart';
+
 class CompanyCard extends StatelessWidget {
-  const CompanyCard({super.key});
+  const CompanyCard({super.key, required this.company});
+
+  final Company company;
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +27,14 @@ class CompanyCard extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             radius: 40,
-            backgroundImage: AssetImage('assets/avatar_user.jpg'),
+            backgroundImage: AssetImage(company.imageUrl),
           ),
           smSpacer(),
-          Text("Spotify USA Inc", style: TextStyles.body1Medium()),
+          Text(company.name, style: TextStyles.body1Medium()),
           smSpacer(),
-          Text("9 jobs open", style: TextStyles.calloutMedium(color: Colors.grey.shade500)),
+          Text("${company.openSlots} jobs open", style: TextStyles.calloutMedium(color: Colors.grey.shade500)),
         ],
       ),
     );
