@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
+import 'package:mobile_app/ui/views/apply_job_sceen.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/models/offer.dart';
@@ -203,10 +204,10 @@ class _OfferScreenState extends State<OfferScreen> {
               child: GestureDetector(
                           onTap: () {
                           
-                        //    Navigator.push(
-                        //         context,
-                        //         MaterialPageRoute(builder: (context) => const ),
-                        // );
+                           Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => const ApplyJobScreen() ),
+                        );
                         },
                           child: Container(
                             height: context.height * 0.06,
