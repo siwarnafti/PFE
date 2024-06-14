@@ -23,7 +23,8 @@ class FavoriteViewModel extends ChangeNotifier {
 
   void addFavoriteOffer(Offer offer) {
     final String dateKey = _getCurrentDateKey();
-    dummyOffers.firstWhere((element) => element.id == offer.id).isFavorite = true;
+    dummyOffers.firstWhere((element) => element.id == offer.id).isFavorite =
+        true;
     if (_favoriteOffers.containsKey(dateKey)) {
       _favoriteOffers[dateKey]!.add(offer);
     } else {
@@ -35,9 +36,11 @@ class FavoriteViewModel extends ChangeNotifier {
 
   void removeFavoriteOffer(Offer offer) {
     bool offerRemoved = false;
-    dummyOffers.firstWhere((element) => element.id == offer.id).isFavorite = false;
+    dummyOffers.firstWhere((element) => element.id == offer.id).isFavorite =
+        false;
     for (String dateKey in _favoriteOffers.keys) {
-      _favoriteOffers[dateKey]!.removeWhere((existingOffer) => existingOffer.id == offer.id);
+      _favoriteOffers[dateKey]!
+          .removeWhere((existingOffer) => existingOffer.id == offer.id);
 
       if (_favoriteOffers[dateKey]!.isEmpty) {
         _favoriteOffers.remove(dateKey);
@@ -70,10 +73,12 @@ class FavoriteViewModel extends ChangeNotifier {
       Map<String, dynamic> favoriteOffersMap = jsonDecode(favoriteOffersString);
       _favoriteOffers.clear();
       favoriteOffersMap.forEach((key, value) {
-        _favoriteOffers[key] = (value as List).map((e) => Offer.fromJson(e)).toList();
+        _favoriteOffers[key] =
+            (value as List).map((e) => Offer.fromJson(e)).toList();
       });
       for (var offer in dummyOffers) {
-        offer.isFavorite = _favoriteOffers.values.any((list) => list.any((o) => o.id == offer.id));
+        offer.isFavorite = _favoriteOffers.values
+            .any((list) => list.any((o) => o.id == offer.id));
       }
       notifyListeners();
     }
