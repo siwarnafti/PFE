@@ -3,13 +3,15 @@ import 'package:flutter/widgets.dart';
 import 'package:mobile_app/ui/presentation/presentation.dart';
 import 'package:mobile_app/ui/presentation/theme/paddings.dart';
 import 'package:mobile_app/ui/views/signin_screen.dart';
+import 'package:mobile_app/ui/views/signup_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final deviceHeight = MediaQuery.sizeOf(context).height;   //size tel responsive
+    final deviceHeight =
+        MediaQuery.sizeOf(context).height; //size tel responsive
     final deviceWidth = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
@@ -20,7 +22,10 @@ class OnboardingScreen extends StatelessWidget {
           width: deviceWidth,
           color: const Color(0xFF5E569B),
         ),
-        Align(alignment: Alignment.topCenter,child: Image.asset("assets/app_logo.jpeg"),),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Image.asset("assets/app_logo.jpeg"),
+        ),
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
@@ -57,9 +62,9 @@ class OnboardingScreen extends StatelessWidget {
                 ),
                 mdSpacer(),
                 Column(
-                
                   children: [
-                    GestureDetector(   //fonctionnialité
+                    GestureDetector(
+                      //fonctionnialité
                       onTap: () {},
                       child: Container(
                         padding: Paddings.allSm,
@@ -83,15 +88,14 @@ class OnboardingScreen extends StatelessWidget {
                     xxxsSpacer(),
                     GestureDetector(
                       onTap: () {
-                         Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SignInScreen()),
-                    );
-                                    
-                       
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignInScreen()),
+                        );
                       },
                       child: Container(
-padding: Paddings.allSm,                        
+                        padding: Paddings.allSm,
                         decoration: BoxDecoration(
                             color: const Color(0xFF5E569B),
                             borderRadius: BorderRadius.all(
@@ -102,7 +106,8 @@ padding: Paddings.allSm,
                               "Sign As an Employee",
                               style: TextStyle(
                                   color: Colors.white,
-                                  fontWeight: FontWeight.bold,fontSize: 17),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17),
                             )),
                       ),
                     ),
@@ -119,11 +124,18 @@ padding: Paddings.allSm,
                           fontWeight: FontWeight.bold),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUpScreen()),
+                        );
+                      },
                       child: const Text(
                         "Register",
                         style: TextStyle(
-                            color: const Color(0xFF5E569B), fontWeight: FontWeight.bold),
+                            color: const Color(0xFF5E569B),
+                            fontWeight: FontWeight.bold),
                       ),
                     )
                   ],

@@ -4,6 +4,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_app/ui/presentation/extensions/list_spacing.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
+import 'package:mobile_app/ui/views/offer_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/models/offer.dart';
@@ -165,86 +166,92 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     );
   }
 
-  Widget _favoriteOfferCard(Offer offer) => Container(
-        padding: Paddings.allMd,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8.0),
-          border: Border.all(color: Colors.grey.shade200),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 10.0,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 20,
-                  backgroundImage: AssetImage(offer.imageUrl),
-                ),
-                xxsSpacer(),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      offer.title.length > 20 ? '${offer.title.substring(0, 20)}...' : offer.title,
-                      style: TextStyles.body1Medium(),
-                    ),
-                    Text(
-                      offer.company,
-                      style: TextStyles.calloutMedium(color: Colors.grey.shade500),
-                    ),
-                  ],
-                ),
-                const Spacer(),
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () => context.read<FavoriteViewModel>().removeFavoriteOffer(offer),
-                    child: const Icon(
-                      Icons.favorite,
-                      color: Colors.red,
-                      size: 28.0,
-                    ),
+  Widget _favoriteOfferCard(Offer offer) => GestureDetector(
+    onTap: ()=> Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>  OfferScreen(offer: offer,)),
                   ),
-                ),
-              ],
-            ),
-            smSpacer(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Icon(Icons.location_on_outlined, color: Colors.grey, size: Dimensions.md),
-                xxxsSpacer(),
-                Text(
-                  offer.location,
-                  style: TextStyles.calloutMedium(color: Colors.grey),
-                ),
-                const Spacer(),
-                RichText(
-                  text: TextSpan(
+    child: Container(
+          padding: Paddings.allMd,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(8.0),
+            border: Border.all(color: Colors.grey.shade200),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 10.0,     
+                offset: const Offset(0, 2),
+              ),
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundImage: AssetImage(offer.imageUrl),
+                  ),
+                  xxsSpacer(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextSpan(
-                        text: '\$${offer.salary ~/ 12} ',
-                        style: TextStyles.body1Bold(color: Colors.black),
+                      Text(
+                        offer.title.length > 20 ? '${offer.title.substring(0, 20)}...' : offer.title,
+                        style: TextStyles.body1Medium(),
                       ),
-                      TextSpan(
-                        text: '/Month',
-                        style: TextStyles.calloutMedium(color: Colors.grey.shade300),
+                      Text(
+                        offer.company,
+                        style: TextStyles.calloutMedium(color: Colors.grey.shade500),
                       ),
                     ],
                   ),
-                ),
-              ],
-            ),
-          ],
+                  const Spacer(),
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () => context.read<FavoriteViewModel>().removeFavoriteOffer(offer),
+                      child: const Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                        size: 28.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              smSpacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Icon(Icons.location_on_outlined, color: Colors.grey, size: Dimensions.md),
+                  xxxsSpacer(),
+                  Text(
+                    offer.location,
+                    style: TextStyles.calloutMedium(color: Colors.grey),
+                  ),
+                  const Spacer(),
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: '\$${offer.salary ~/ 12} ',
+                          style: TextStyles.body1Bold(color: Colors.black),
+                        ),
+                        TextSpan(
+                          text: '/Month',
+                          style: TextStyles.calloutMedium(color: Colors.grey.shade300),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-      );
+  );
 
   Widget _body() => Container(
         color: Colors.white,
