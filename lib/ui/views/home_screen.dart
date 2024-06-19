@@ -66,7 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _appBar() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Dimensions.sm, vertical: Dimensions.xxs),
+        padding: const EdgeInsets.symmetric(
+            horizontal: Dimensions.sm, vertical: Dimensions.xxs),
         child: Row(
           children: [
             const CircleAvatar(
@@ -81,7 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   'Hi Welcome 🙌',
-                  style: TextStyles.calloutRegular(color: Colors.grey.withOpacity(0.8)),
+                  style: TextStyles.calloutRegular(
+                      color: Colors.grey.withOpacity(0.8)),
                 ),
                 Text(
                   'Dustin Bates',
@@ -90,7 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             const Spacer(),
-          
             Stack(
               children: [
                 IconButton(
@@ -146,7 +147,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     TextField(
                       decoration: InputDecoration(
                         hintText: 'Search for anything',
-                        hintStyle: TextStyles.body0Semibold(color: Colors.grey.withOpacity(0.8)),
+                        hintStyle: TextStyles.body0Semibold(
+                            color: Colors.grey.withOpacity(0.8)),
                         prefixIcon: const Icon(Icons.search),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(Dimensions.sm),
@@ -167,64 +169,34 @@ class _HomeScreenState extends State<HomeScreen> {
                       style: TextStyles.calloutRegular(color: Colors.black),
                     ),
                     xxsSpacer(),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Location',
-                              style: TextStyles.calloutBold(color: Colors.black),
-                            ),
-                            xxsSpacer(),
-                            SizedBox(
-                              width: context.width * 0.33,
-                              child: TextField(
-                                decoration: InputDecoration(
-                                  hintText: 'City,ect',
-                                  hintStyle: TextStyles.body0Semibold(color: Colors.grey.withOpacity(0.8)),
-                                  prefixIcon: const Icon(Icons.location_on_outlined),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(Dimensions.sm),
-                                    borderSide: const BorderSide(color: Colors.grey),
-                                  ),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(Dimensions.sm),
-                                    borderSide: const BorderSide(color: Colors.grey),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(Dimensions.sm),
-                                    borderSide: const BorderSide(color: Colors.grey),
-                                  ),
-                                  filled: true,
-                                  fillColor: Colors.white,
-                                  contentPadding: Paddings.verticalXxxs,
-                                ),
-                                style: TextStyles.calloutRegular(color: Colors.black),
-                              ),
-                            ),
-                          ],
+                    Text(
+                      'Location',
+                      style: TextStyles.calloutBold(color: Colors.black),
+                    ),
+                    xxsSpacer(),
+                    TextField(
+                      decoration: InputDecoration(
+                        hintText: 'City,ect',
+                        hintStyle: TextStyles.body0Semibold(
+                            color: Colors.grey.withOpacity(0.8)),
+                        prefixIcon: const Icon(Icons.location_on_outlined),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(Dimensions.sm),
+                          borderSide: const BorderSide(color: Colors.grey),
                         ),
-                        const Spacer(),
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Distance',
-                              style: TextStyles.calloutBold(color: Colors.black),
-                            ),
-                            xxsSpacer(),
-                            SizedBox(
-                              width: context.width * 0.33,
-                              child: const LimitedDropdown(),
-                            ),
-                          ],
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(Dimensions.sm),
+                          borderSide: const BorderSide(color: Colors.grey),
                         ),
-                      ],
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(Dimensions.sm),
+                          borderSide: const BorderSide(color: Colors.grey),
+                        ),
+                        filled: true,
+                        fillColor: Colors.white,
+                        contentPadding: Paddings.verticalXxxs,
+                      ),
+                      style: TextStyles.calloutRegular(color: Colors.black),
                     ),
                     mdSpacer(),
                     GestureDetector(
@@ -315,7 +287,8 @@ class _HomeScreenState extends State<HomeScreen> {
               const Spacer(),
               Text(
                 'see all',
-                style: TextStyles.buttonRegular(color: Colors.grey.withOpacity(0.8)),
+                style: TextStyles.buttonRegular(
+                    color: Colors.grey.withOpacity(0.8)),
               ),
             ],
           ),
@@ -357,9 +330,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: _body(),
-
     );
   }
 }

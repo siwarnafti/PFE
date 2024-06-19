@@ -41,6 +41,7 @@ final List<Offer> fakeOffers = [
     category: ['Data Science', 'Full Time', 'Python'],
     id: '4',
   ),
+  
   Offer(
     title: 'Mobile App Developer',
     company: 'App Creators LLC',
