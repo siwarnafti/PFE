@@ -19,23 +19,16 @@ class _SettingScreenState extends State<SettingScreen> {
   bool _isSwitched = false;
 
   Widget _appBar() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Dimensions.sm, vertical: Dimensions.xxs),
+        padding: const EdgeInsets.symmetric(
+            horizontal: Dimensions.sm, vertical: Dimensions.xxs),
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_back),
-                iconSize: Dimensions.xmd,
-              ),
-            ),
             SizedBox(
               width: context.width,
               child: Center(
                 child: Text(
-                  'Setting',
+                  'Settings',
                   style: TextStyles.title2Bold(),
                   textAlign: TextAlign.center,
                 ),
@@ -71,7 +64,11 @@ class _SettingScreenState extends State<SettingScreen> {
         ],
       );
 
-  Widget settingItem({required settingName, required IconData settingIcon, required pressFunction}) => GestureDetector(
+  Widget settingItem(
+          {required settingName,
+          required IconData settingIcon,
+          required pressFunction}) =>
+      GestureDetector(
         onTap: pressFunction,
         child: ListTile(
           title: Text(settingName, style: TextStyles.buttonMedium()),
@@ -96,12 +93,16 @@ class _SettingScreenState extends State<SettingScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Personal Information', style: TextStyles.body0Medium(color: Colors.grey.shade500)),
+            Text('Personal Information',
+                style: TextStyles.body0Medium(color: Colors.grey.shade500)),
             settingItem(
                 settingName: 'Profile',
                 settingIcon: Icons.person_3_outlined,
                 pressFunction: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileSettings()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ProfileSettings()));
                 }),
             ExpandableTile(
                 title: 'Notifications',
@@ -116,7 +117,8 @@ class _SettingScreenState extends State<SettingScreen> {
                       Row(
                         children: [
                           const SizedBox(width: 30),
-                          Text('Push Notifications', style: TextStyles.calloutRegular()),
+                          Text('Push Notifications',
+                              style: TextStyles.calloutRegular()),
                           const Spacer(),
                           SizedBox(
                             height: 30,
@@ -139,7 +141,8 @@ class _SettingScreenState extends State<SettingScreen> {
                       Row(
                         children: [
                           const SizedBox(width: 30),
-                          Text('Push Notifications', style: TextStyles.calloutRegular()),
+                          Text('Push Notifications',
+                              style: TextStyles.calloutRegular()),
                           const Spacer(),
                           SizedBox(
                             height: 30,
@@ -162,7 +165,8 @@ class _SettingScreenState extends State<SettingScreen> {
                       Row(
                         children: [
                           const SizedBox(width: 30),
-                          Text('Push Notifications', style: TextStyles.calloutRegular()),
+                          Text('Push Notifications',
+                              style: TextStyles.calloutRegular()),
                           const Spacer(),
                           SizedBox(
                             height: 30,
@@ -196,7 +200,8 @@ class _SettingScreenState extends State<SettingScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Security', style: TextStyles.body0Medium(color: Colors.grey.shade500)),
+            Text('Security',
+                style: TextStyles.body0Medium(color: Colors.grey.shade500)),
             settingItem(
                 settingName: 'Change Password',
                 settingIcon: Icons.lock_outline,
@@ -245,7 +250,8 @@ class _SettingScreenState extends State<SettingScreen> {
                     xxxsSpacer(),
                     Row(
                       children: [
-                        Text('Remember Password', style: TextStyles.calloutRegular()),
+                        Text('Remember Password',
+                            style: TextStyles.calloutRegular()),
                         const Spacer(),
                         SizedBox(
                           height: 30,
@@ -302,9 +308,16 @@ class _SettingScreenState extends State<SettingScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('General', style: TextStyles.body0Medium(color: Colors.grey.shade500)),
-            settingItem(settingName: 'Language', settingIcon: Icons.language, pressFunction: () {}),
-            settingItem(settingName: 'Clear Cache', settingIcon: Icons.restore_from_trash, pressFunction: () {}),
+            Text('General',
+                style: TextStyles.body0Medium(color: Colors.grey.shade500)),
+            settingItem(
+                settingName: 'Language',
+                settingIcon: Icons.language,
+                pressFunction: () {}),
+            settingItem(
+                settingName: 'Clear Cache',
+                settingIcon: Icons.restore_from_trash,
+                pressFunction: () {}),
           ],
         ),
       );
@@ -317,7 +330,8 @@ class _SettingScreenState extends State<SettingScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('About', style: TextStyles.body0Medium(color: Colors.grey.shade500)),
+            Text('About',
+                style: TextStyles.body0Medium(color: Colors.grey.shade500)),
             settingItem(
                 settingName: 'Legal and Policies',
                 settingIcon: Icons.shield_outlined,
@@ -336,10 +350,12 @@ class _SettingScreenState extends State<SettingScreen> {
                             child: Column(
                               children: [
                                 lgSpacer(),
-                                Text('Legal and Policies', style: TextStyles.title2Bold()),
+                                Text('Legal and Policies',
+                                    style: TextStyles.title2Bold()),
                                 const SizedBox(height: 20),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: Dimensions.md),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: Dimensions.md),
                                   child: Text(
                                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Don egestas, urna nec tincidunt.\n'
                                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Don egestas, urna nec tincidunt.'
@@ -366,13 +382,21 @@ class _SettingScreenState extends State<SettingScreen> {
       );
 
   Widget _logoutButton() => Container(
-        padding: const EdgeInsets.symmetric(vertical: Dimensions.xxs),
-        width: context.width * 0.8,
+        margin: EdgeInsets.symmetric(horizontal: context.width * 0.1),
+        height: context.height * 0.06,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey.shade200),
-          borderRadius: BorderRadius.circular(Dimensions.md),
+          color: const Color(0xFF5E569B),
+          borderRadius: BorderRadius.all(
+            Radius.circular(context.height * 0.1),
+          ),
         ),
-        child: Center(child: Text("Log Out", style: TextStyles.buttonRegular(color: Colors.grey))),
+        child: const Center(
+          child: Text(
+            "Log out",
+            style: TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+          ),
+        ),
       );
 
   Widget _body() => Container(
