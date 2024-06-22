@@ -150,7 +150,8 @@ class _OfferScreenState extends State<OfferScreen> {
                             const Text('Location'),
                             Text(
                               widget.offer.salary.toString(),
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
                             )
                           ],
                         ),
@@ -162,7 +163,8 @@ class _OfferScreenState extends State<OfferScreen> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       "Job Description",
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   ),
                   xsSpacer(),

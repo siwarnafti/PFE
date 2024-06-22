@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
+import 'package:mobile_app/ui/views/signin_screen.dart';
 
 import '../../presentation/presentation.dart';
 import '../../widgets/successful_popup.dart';
@@ -272,7 +273,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     style: TextStyle(color: Colors.black.withOpacity(0.5), fontWeight: FontWeight.bold),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignInScreen()),
+                      );
+                    },
                     child: const Text(
                       "Register",
                       style: TextStyle(color: Color(0xFF5E569B), fontWeight: FontWeight.bold),

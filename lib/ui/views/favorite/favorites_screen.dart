@@ -40,7 +40,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   }
 
   Widget _appBar() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Dimensions.sm, vertical: Dimensions.xxs),
+        padding: const EdgeInsets.symmetric(
+            horizontal: Dimensions.sm, vertical: Dimensions.xxs),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -51,7 +52,10 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               textAlign: TextAlign.center,
             ),
             const Spacer(),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.filter_list_outlined), iconSize: Dimensions.xmd),
+            IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.filter_list_outlined),
+                iconSize: Dimensions.xmd),
           ],
         ),
       );
@@ -61,9 +65,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         child: TextField(
           decoration: InputDecoration(
             hintText: 'Search ',
-            hintStyle: TextStyles.body0Semibold(color: Colors.grey.withOpacity(0.8)),
+            hintStyle:
+                TextStyles.body0Semibold(color: Colors.grey.withOpacity(0.8)),
             prefixIcon: const Icon(Icons.search),
-            suffixIcon: Icon(FontAwesomeIcons.sliders, size: Dimensions.md, color: Colors.black.withOpacity(0.8)),
+            suffixIcon: Icon(FontAwesomeIcons.sliders,
+                size: Dimensions.md, color: Colors.black.withOpacity(0.8)),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(Dimensions.sm),
               borderSide: BorderSide(color: Colors.grey.shade300),
@@ -104,7 +110,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   Container(
                     padding: Paddings.allXxxs,
                     decoration: BoxDecoration(
-                      color: _currentIndex != index ? Colors.white : const Color(0xFF5E569B).withOpacity(0.8),
+                      color: _currentIndex != index
+                          ? Colors.white
+                          : const Color(0xFF5E569B).withOpacity(0.8),
                       borderRadius: const BorderRadius.all(
                         Radius.circular(Dimensions.sm),
                       ),
@@ -117,7 +125,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     child: Text(
                       _searchItems[index],
                       style: TextStyles.calloutBold(
-                        color: _currentIndex != index ? Colors.black.withOpacity(0.5) : Colors.white,
+                        color: _currentIndex != index
+                            ? Colors.black.withOpacity(0.5)
+                            : Colors.white,
                       ),
                     ),
                   ),
@@ -152,7 +162,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(formattedDate, style: TextStyles.body1Medium(color: Colors.grey.shade500)),
+          Text(formattedDate,
+              style: TextStyles.body1Medium(color: Colors.grey.shade500)),
           mdSpacer(),
           Column(
             children: favoriteViewModel.favoriteOffers[date]!
@@ -205,19 +216,24 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        offer.title.length > 20 ? '${offer.title.substring(0, 20)}...' : offer.title,
+                        offer.title.length > 20
+                            ? '${offer.title.substring(0, 20)}...'
+                            : offer.title,
                         style: TextStyles.body1Medium(),
                       ),
                       Text(
                         offer.company,
-                        style: TextStyles.calloutMedium(color: Colors.grey.shade500),
+                        style: TextStyles.calloutMedium(
+                            color: Colors.grey.shade500),
                       ),
                     ],
                   ),
                   const Spacer(),
                   Expanded(
                     child: GestureDetector(
-                      onTap: () => context.read<FavoriteViewModel>().removeFavoriteOffer(offer),
+                      onTap: () => context
+                          .read<FavoriteViewModel>()
+                          .removeFavoriteOffer(offer),
                       child: const Icon(
                         Icons.favorite,
                         color: Colors.red,
@@ -231,7 +247,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Icon(Icons.location_on_outlined, color: Colors.grey, size: Dimensions.md),
+                  const Icon(Icons.location_on_outlined,
+                      color: Colors.grey, size: Dimensions.md),
                   xxxsSpacer(),
                   Text(
                     offer.location,
@@ -247,7 +264,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                         ),
                         TextSpan(
                           text: '/Month',
-                          style: TextStyles.calloutMedium(color: Colors.grey.shade300),
+                          style: TextStyles.calloutMedium(
+                              color: Colors.grey.shade300),
                         ),
                       ],
                     ),
