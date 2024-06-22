@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
-import 'package:mobile_app/ui/views/apply_job_sceen.dart';
+import 'package:mobile_app/ui/views/home/apply_job_sceen.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/models/offer.dart';
-import '../../core/viewmodels/offer_view_model.dart';
-import '../presentation/presentation.dart';
+import '../../../core/models/offer.dart';
+import '../../../core/viewmodels/offer_view_model.dart';
+import '../../presentation/presentation.dart';
 
 class OfferScreen extends StatefulWidget {
   const OfferScreen({super.key, required this.offer});
+
   final Offer offer;
 
   @override
@@ -19,7 +20,6 @@ class _OfferScreenState extends State<OfferScreen> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-
       child: Scaffold(
         body: Stack(
           children: [
@@ -48,9 +48,7 @@ class _OfferScreenState extends State<OfferScreen> {
                         onTap: () => Navigator.pop(context),
                         child: Container(
                           padding: EdgeInsets.all(context.width * 0.02),
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.grey.withOpacity(0.3)),
+                          decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.withOpacity(0.3)),
                           child: const Icon(
                             Icons.arrow_back,
                             color: Colors.white,
@@ -62,17 +60,13 @@ class _OfferScreenState extends State<OfferScreen> {
                       ),
                       const Text(
                         'Job Detail',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.white),
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),
                         textAlign: TextAlign.center,
                       ),
                     ],
                   ),
                   xxxlSpacer(),
-                xlSpacer(),
-                  
+                  xlSpacer(),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: CircleAvatar(
@@ -95,36 +89,23 @@ class _OfferScreenState extends State<OfferScreen> {
                           ),
                           Text(
                             widget.offer.company,
-                            style: TextStyles.calloutMedium(
-                                color: Colors.grey.shade500),
+                            style: TextStyles.calloutMedium(color: Colors.grey.shade500),
                           ),
                         ],
                       ),
                       GestureDetector(
-                        onTap: widget.offer.isFavorite ? () {
-                             context
-                                .read<FavoriteViewModel>()
-                                .removeFavoriteOffer(widget.offer);
-                                setState(() {
-                                  
-                                });
-                                
-                                }
-                                
-                            :() {context
-                                .read<FavoriteViewModel>()
-                                .addFavoriteOffer(widget.offer);
-                                setState(() {
-                                  
-                                });
-                                },
+                        onTap: widget.offer.isFavorite
+                            ? () {
+                                context.read<FavoriteViewModel>().removeFavoriteOffer(widget.offer);
+                                setState(() {});
+                              }
+                            : () {
+                                context.read<FavoriteViewModel>().addFavoriteOffer(widget.offer);
+                                setState(() {});
+                              },
                         child: Icon(
-                          widget.offer.isFavorite
-                              ? Icons.favorite
-                              : Icons.favorite_border_rounded,
-                          color: widget.offer.isFavorite
-                              ? Colors.red
-                              : Colors.grey.shade500,
+                          widget.offer.isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
+                          color: widget.offer.isFavorite ? Colors.red : Colors.grey.shade500,
                           size: 34,
                         ),
                       ),
@@ -133,9 +114,8 @@ class _OfferScreenState extends State<OfferScreen> {
                   mdSpacer(),
                   Container(
                     padding: Paddings.allSm,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey),
-                        borderRadius: BorderRadius.circular(15)),
+                    decoration:
+                        BoxDecoration(border: Border.all(color: Colors.grey), borderRadius: BorderRadius.circular(15)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -148,20 +128,15 @@ class _OfferScreenState extends State<OfferScreen> {
                               color: Colors.blueAccent,
                             ),
                             const Text('Location'),
-                            Text(widget.offer.location,
-                                style:
-                                    const TextStyle(fontWeight: FontWeight.bold))
+                            Text(widget.offer.location, style: const TextStyle(fontWeight: FontWeight.bold))
                           ],
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            const Icon(Icons.timer,
-                                size: 30, color: Color(0xFF5E569B)),
+                            const Icon(Icons.timer, size: 30, color: Color(0xFF5E569B)),
                             const Text('Job Type'),
-                            Text(widget.offer.category[1],
-                                style:
-                                    const TextStyle(fontWeight: FontWeight.bold))
+                            Text(widget.offer.category[1], style: const TextStyle(fontWeight: FontWeight.bold))
                           ],
                         ),
                         Column(
@@ -192,42 +167,38 @@ class _OfferScreenState extends State<OfferScreen> {
                   ),
                   xsSpacer(),
                   Text(widget.offer.description),
-                 
                 ],
               ),
             ),
-          
-          Padding(
+            Padding(
               padding: Paddings.allXs,
-            child: Align(
-              alignment: Alignment.bottomCenter,
-              child: GestureDetector(
-                          onTap: () {
-                          
-                           Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => const ApplyJobScreen() ),
-                        );
-                        },
-                          child: Container(
-                            height: context.height * 0.06,
-                            decoration: BoxDecoration(
-                              color: const Color(0xFF5E569B),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(context.height * 0.1),
-                              ),
-                            ),
-                            child: const Center(
-                              child: Text(
-                                "Apply for this job",
-                                style: TextStyle(
-                                    color: Colors.white, fontWeight: FontWeight.bold,fontSize: 18),
-                              ),
-                            ),
-                          ),
-                        ),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ApplyJobScreen()),
+                    );
+                  },
+                  child: Container(
+                    height: context.height * 0.06,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF5E569B),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(context.height * 0.1),
+                      ),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "Apply for this job",
+                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
-          ),
           ],
         ),
       ),

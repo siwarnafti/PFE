@@ -4,12 +4,12 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_app/ui/presentation/extensions/list_spacing.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
-import 'package:mobile_app/ui/views/offer_screen.dart';
+import 'package:mobile_app/ui/views/home/offer_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/models/offer.dart';
-import '../../core/viewmodels/offer_view_model.dart';
-import '../presentation/presentation.dart';
+import '../../../core/models/offer.dart';
+import '../../../core/viewmodels/offer_view_model.dart';
+import '../../presentation/presentation.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -44,9 +44,12 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-           
             const Spacer(),
-            Text('My Favorite', style: TextStyles.title2Bold(),textAlign: TextAlign.center,),
+            Text(
+              'My Favorite',
+              style: TextStyles.title2Bold(),
+              textAlign: TextAlign.center,
+            ),
             const Spacer(),
             IconButton(onPressed: () {}, icon: const Icon(Icons.filter_list_outlined), iconSize: Dimensions.xmd),
           ],
@@ -167,11 +170,14 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   }
 
   Widget _favoriteOfferCard(Offer offer) => GestureDetector(
-    onTap: ()=> Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>  OfferScreen(offer: offer,)),
-                  ),
-    child: Container(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => OfferScreen(
+                    offer: offer,
+                  )),
+        ),
+        child: Container(
           padding: Paddings.allMd,
           decoration: BoxDecoration(
             color: Colors.white,
@@ -180,7 +186,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.1),
-                blurRadius: 10.0,     
+                blurRadius: 10.0,
                 offset: const Offset(0, 2),
               ),
             ],
@@ -251,7 +257,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             ],
           ),
         ),
-  );
+      );
 
   Widget _body() => Container(
         color: Colors.white,

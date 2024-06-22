@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/presentation/extensions/list_spacing.dart';
-import 'package:mobile_app/ui/views/offer_screen.dart';
+import 'package:mobile_app/ui/views/home/offer_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/models/offer.dart';
@@ -15,11 +15,12 @@ class OfferCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ()=>Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>  OfferScreen(offer:offer),),
-                  ),
-
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => OfferScreen(offer: offer),
+        ),
+      ),
       child: Padding(
         padding: Paddings.horizontalSm,
         child: Container(

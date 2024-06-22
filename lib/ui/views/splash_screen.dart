@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:mobile_app/ui/views/on_boarding_screen.dart';
-import 'package:mobile_app/ui/views/signin_screen.dart';
+import 'package:mobile_app/ui/views/sign/on_boarding_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/viewmodels/offer_view_model.dart';
-import 'home_tab.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -31,8 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      
-      backgroundColor: const Color(0xFF5E569B),
+      backgroundColor: Color(0xFF5E569B),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -55,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(height: 20),
             LinearProgressIndicator(
               backgroundColor: Colors.white,
-              valueColor: AlwaysStoppedAnimation<Color>(const Color(0xFF5E569B)),
+              valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF5E569B)),
             ),
           ],
         ),
