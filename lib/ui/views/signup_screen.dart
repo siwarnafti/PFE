@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
+import 'package:mobile_app/ui/views/signin_screen.dart';
 
 import '../presentation/presentation.dart';
 import '../widgets/successful_popup.dart';
@@ -18,7 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: context.width * 0.05, vertical: context.width * 0.05),
+            horizontal: context.width * 0.05, vertical: context.width * 0.07),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -54,7 +55,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               xxxsSpacer(),
-              Text('Lorem ipsum dolor sit amet'),
+              const Text('Lorem ipsum dolor sit amet'),
               mdSpacer(),
               const Align(
                   alignment: Alignment.centerLeft,
@@ -274,7 +275,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   showDialog<void>(
                     context: context,
                     builder: (BuildContext context) {
-                      return SuccessfulPopup();
+                      return const SuccessfulPopup();
                     },
                   );
                 },
@@ -302,17 +303,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't have an account? ",
+                    "Already have an account? ",
                     style: TextStyle(
                         color: Colors.black.withOpacity(0.5),
                         fontWeight: FontWeight.bold),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignInScreen()),
+                      );
+                    },
                     child: const Text(
-                      "Register",
+                      "Sign Up",
                       style: TextStyle(
-                          color: const Color(0xFF5E569B),
+                          color: Color(0xFF5E569B),
                           fontWeight: FontWeight.bold),
                     ),
                   )

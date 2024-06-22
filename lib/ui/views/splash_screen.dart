@@ -31,7 +31,6 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      
       backgroundColor: const Color(0xFF5E569B),
       body: Center(
         child: Column(
@@ -55,7 +54,8 @@ class _SplashScreenState extends State<SplashScreen> {
             SizedBox(height: 20),
             LinearProgressIndicator(
               backgroundColor: Colors.white,
-              valueColor: AlwaysStoppedAnimation<Color>(const Color(0xFF5E569B)),
+              valueColor:
+                  AlwaysStoppedAnimation<Color>(const Color(0xFF5E569B)),
             ),
           ],
         ),
