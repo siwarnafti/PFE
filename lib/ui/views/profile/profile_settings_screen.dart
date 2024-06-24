@@ -7,7 +7,8 @@ import 'package:mobile_app/ui/widgets/expandable_tile.dart';
 import '../../presentation/presentation.dart';
 
 class SettingScreen extends StatefulWidget {
-  const SettingScreen({super.key});
+  const 
+  SettingScreen({super.key});
 
   @override
   State<SettingScreen> createState() => _SettingScreenState();
@@ -21,19 +22,12 @@ class _SettingScreenState extends State<SettingScreen> {
         child: Stack(
           alignment: Alignment.center,
           children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.arrow_back),
-                iconSize: Dimensions.xmd,
-              ),
-            ),
+           
             SizedBox(
               width: context.width,
               child: Center(
                 child: Text(
-                  'Setting',
+                  'Settings',
                   style: TextStyles.title2Bold(),
                   textAlign: TextAlign.center,
                 ),
