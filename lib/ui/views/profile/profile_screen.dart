@@ -239,9 +239,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.check_circle,
-                              color: const Color(0xFF5E569B),
+                              color: Color(0xFF5E569B),
                               size: 25,
                             ),
                           ),
