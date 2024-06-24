@@ -232,7 +232,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     onTap: () {},
                     child: const Text(
                       "Register",
-                      style: TextStyle(color: const Color(0xFF5E569B), fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Color(0xFF5E569B), fontWeight: FontWeight.bold),
                     ),
                   )
                 ],

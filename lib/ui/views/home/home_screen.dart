@@ -10,8 +10,8 @@ import 'package:provider/provider.dart';
 import '../../../core/fake_data/company.dart';
 import '../../presentation/presentation.dart';
 import '../../widgets/company_card.dart';
-import '../../widgets/offerIndicator.dart';
 import '../../widgets/offer_card.dart';
+import '../../widgets/offer_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

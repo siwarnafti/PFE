@@ -7,10 +7,10 @@ class LimitedDropdown extends StatefulWidget {
   const LimitedDropdown({super.key});
 
   @override
-  _LimitedDropdownState createState() => _LimitedDropdownState();
+  LimitedDropdownState createState() => LimitedDropdownState();
 }
 
-class _LimitedDropdownState extends State<LimitedDropdown> {
+class LimitedDropdownState extends State<LimitedDropdown> {
   int? selectedValue = 5;
   final List<int> numbers = List<int>.generate(201, (int index) => index);
 

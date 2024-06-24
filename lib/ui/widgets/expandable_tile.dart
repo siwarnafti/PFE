@@ -9,11 +9,11 @@ class ExpandableTile extends StatefulWidget {
   final Widget expandedBody;
 
   const ExpandableTile({
+    this.leadingIcon = FontAwesomeIcons.infoCircle,
     required this.title,
-    required this.leadingIcon,
     required this.expandedBody,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   ExpandableTileState createState() => ExpandableTileState();
@@ -34,11 +34,13 @@ class ExpandableTileState extends State<ExpandableTile> {
       children: [
         ListTile(
           title: Text(widget.title, style: TextStyles.buttonMedium()),
-          leading: Icon(
-            widget.leadingIcon,
-            color: Colors.black.withOpacity(0.8),
-            size: Dimensions.xmd,
-          ),
+          leading: widget.leadingIcon == FontAwesomeIcons.infoCircle
+              ? null
+              : Icon(
+                  widget.leadingIcon,
+                  color: Colors.black.withOpacity(0.8),
+                  size: Dimensions.xmd,
+                ),
           trailing: Icon(
             _isExpanded ? FontAwesomeIcons.arrowDown : Icons.arrow_forward_ios,
             color: Colors.grey,

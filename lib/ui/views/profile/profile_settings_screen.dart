@@ -5,6 +5,8 @@ import 'package:mobile_app/ui/views/profile/profile_screen.dart';
 import 'package:mobile_app/ui/widgets/expandable_tile.dart';
 
 import '../../presentation/presentation.dart';
+import 'change_password_bottom_sheet.dart';
+import 'help_support_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   const SettingScreen({super.key});
@@ -195,7 +197,19 @@ class _SettingScreenState extends State<SettingScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('Security', style: TextStyles.body0Medium(color: Colors.grey.shade500)),
-            settingItem(settingName: 'Change Password', settingIcon: Icons.lock_outline, pressFunction: () {}),
+            settingItem(
+                settingName: 'Change Password',
+                settingIcon: Icons.lock_outline,
+                pressFunction: () {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    enableDrag: true,
+                    isDismissible: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (context) => const ChangePasswordBottomSheet(),
+                  );
+                }),
             ExpandableTile(
               title: 'Security',
               leadingIcon: Icons.security_outlined,
@@ -304,8 +318,49 @@ class _SettingScreenState extends State<SettingScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('About', style: TextStyles.body0Medium(color: Colors.grey.shade500)),
-            settingItem(settingName: 'Legal and Policies', settingIcon: Icons.shield_outlined, pressFunction: () {}),
-            settingItem(settingName: 'Help & Support', settingIcon: Icons.help_outline, pressFunction: () {}),
+            settingItem(
+                settingName: 'Legal and Policies',
+                settingIcon: Icons.shield_outlined,
+                pressFunction: () {
+                  showModalBottomSheet(
+                      context: context,
+                      builder: (context) => Container(
+                            height: context.height * 0.8,
+                            decoration: const BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(Dimensions.xl),
+                                topRight: Radius.circular(Dimensions.xl),
+                              ),
+                            ),
+                            child: Column(
+                              children: [
+                                lgSpacer(),
+                                Text('Legal and Policies', style: TextStyles.title2Bold()),
+                                const SizedBox(height: 20),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: Dimensions.md),
+                                  child: Text(
+                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Don egestas, urna nec tincidunt.\n'
+                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Don egestas, urna nec tincidunt.'
+                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Don egestas, urna nec tincidunt.\n'
+                                      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Don egestas, urna nec tincidunt. ',
+                                      style: TextStyles.body0Regular()),
+                                ),
+                              ],
+                            ),
+                          ));
+                }),
+            settingItem(
+                settingName: 'Help & Support',
+                settingIcon: Icons.help_outline,
+                pressFunction: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HelpAndSupportScreen(),
+                      ));
+                }),
           ],
         ),
       );
