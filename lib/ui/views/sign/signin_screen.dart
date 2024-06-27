@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/presentation/presentation.dart';
 import 'package:mobile_app/ui/views/home_tab.dart';
-import 'package:mobile_app/ui/views/sign/forgot_password_screen.dart';
+
+import 'forgot_password_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -25,6 +26,7 @@ class _SignInScreenState extends State<SignInScreen> {
         children: [
           xxxxlSpacer(),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
                 onTap: () => Navigator.pop(context),
@@ -34,9 +36,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   child: const Icon(Icons.arrow_back),
                 ),
               ),
-              SizedBox(
-                width: deviceWidth * 0.26,
-              ),
+              // SizedBox(
+              //   width: deviceWidth * 0.26,
+              // ),
               const Text(
                 'Sign In',
                 style: TextStyle(
@@ -45,6 +47,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 textAlign: TextAlign.center,
               ),
+              const SizedBox.shrink()
             ],
           ),
           xxlSpacer(),

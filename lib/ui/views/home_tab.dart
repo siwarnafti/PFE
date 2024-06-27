@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_app/ui/views/favorites_screen.dart';
+import 'package:mobile_app/ui/views/favorite/favorites_screen.dart';
+import 'package:mobile_app/ui/views/profile/profile_settings_screen.dart';
 
-import 'home_screen.dart';
+import 'home/home_screen.dart';
 
 class HomeTab extends StatefulWidget {
-  const HomeTab({super.key});
+  const HomeTab({super.key, this.initialIndex = 0});
+
+  final int initialIndex;
 
   @override
   State<HomeTab> createState() => _HomeTabState();
@@ -15,8 +18,18 @@ class _HomeTabState extends State<HomeTab> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const FavoritesScreen(),
-    const HomeScreen(),
+    const SettingScreen(),
   ];
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      _currentIndex = widget.initialIndex;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

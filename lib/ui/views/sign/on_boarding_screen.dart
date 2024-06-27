@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mobile_app/ui/presentation/presentation.dart';
-import 'package:mobile_app/ui/presentation/theme/paddings.dart';
-import 'package:mobile_app/ui/views/signin_screen.dart';
-import 'package:mobile_app/ui/views/signup_screen.dart';
+import 'package:mobile_app/ui/views/sign/signin_screen.dart';
+import 'package:mobile_app/ui/views/sign/signup_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final deviceHeight =
-        MediaQuery.sizeOf(context).height; //size tel responsive
+    final deviceHeight = MediaQuery.sizeOf(context).height; //size tel responsive
     final deviceWidth = MediaQuery.sizeOf(context).width;
 
     return Scaffold(
@@ -29,7 +26,6 @@ class OnboardingScreen extends StatelessWidget {
         Align(
           alignment: Alignment.bottomCenter,
           child: Container(
-            height: deviceHeight * 0.5,
             padding: EdgeInsets.all(deviceWidth * 0.1),
             width: deviceWidth,
             decoration: const BoxDecoration(
@@ -40,6 +36,7 @@ class OnboardingScreen extends StatelessWidget {
               ),
             ),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const Text(
                   "Discover job",
@@ -77,10 +74,7 @@ class OnboardingScreen extends StatelessWidget {
                         child: const Center(
                           child: Text(
                             "Sign As an Entreprise",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17),
+                            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),
                           ),
                         ),
                       ),
@@ -90,24 +84,19 @@ class OnboardingScreen extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignInScreen()),
+                          MaterialPageRoute(builder: (context) => const SignInScreen()),
                         );
                       },
                       child: Container(
                         padding: Paddings.allSm,
                         decoration: BoxDecoration(
                             color: const Color(0xFF5E569B),
-                            borderRadius: BorderRadius.all(
-                                Radius.circular(deviceHeight * 0.1))),
+                            borderRadius: BorderRadius.all(Radius.circular(deviceHeight * 0.1))),
                         child: const Align(
                             alignment: Alignment.center,
                             child: Text(
                               "Sign As an Employee",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17),
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17),
                             )),
                       ),
                     ),
@@ -119,23 +108,18 @@ class OnboardingScreen extends StatelessWidget {
                   children: [
                     Text(
                       "Don't have an account? ",
-                      style: TextStyle(
-                          color: Colors.black.withOpacity(0.5),
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.black.withOpacity(0.5), fontWeight: FontWeight.bold),
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignUpScreen()),
+                          MaterialPageRoute(builder: (context) => const SignUpScreen()),
                         );
                       },
                       child: const Text(
                         "Register",
-                        style: TextStyle(
-                            color: const Color(0xFF5E569B),
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Color(0xFF5E569B), fontWeight: FontWeight.bold),
                       ),
                     )
                   ],

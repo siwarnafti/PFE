@@ -4,12 +4,12 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile_app/ui/presentation/extensions/list_spacing.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
-import 'package:mobile_app/ui/views/offer_screen.dart';
+import 'package:mobile_app/ui/views/home/offer_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../../core/models/offer.dart';
-import '../../core/viewmodels/offer_view_model.dart';
-import '../presentation/presentation.dart';
+import '../../../core/models/offer.dart';
+import '../../../core/viewmodels/offer_view_model.dart';
+import '../../presentation/presentation.dart';
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
