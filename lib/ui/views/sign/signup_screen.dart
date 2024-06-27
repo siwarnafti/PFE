@@ -268,7 +268,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't have an account? ",
+                    "Alreay have an account? ",
                     style: TextStyle(color: Colors.black.withOpacity(0.5), fontWeight: FontWeight.bold),
                   ),
                   GestureDetector(
