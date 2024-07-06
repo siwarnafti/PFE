@@ -23,7 +23,6 @@ class _HomeTabState extends State<HomeTab> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     setState(() {
       _currentIndex = widget.initialIndex;

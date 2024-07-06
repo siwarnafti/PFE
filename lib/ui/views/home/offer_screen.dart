@@ -171,7 +171,7 @@ class _OfferScreenState extends State<OfferScreen> {
               ),
             ),
             Padding(
-              padding: Paddings.allXs,
+              padding: Paddings.allXl,
               child: Align(
                 alignment: Alignment.bottomCenter,
                 child: GestureDetector(
