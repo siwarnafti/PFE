@@ -64,8 +64,8 @@ class OfferCard extends StatelessWidget {
                   Expanded(
                     child: GestureDetector(
                       onTap: () => offer.isFavorite
-                          ? context.read<FavoriteViewModel>().removeFavoriteOffer(offer)
-                          : context.read<FavoriteViewModel>().addFavoriteOffer(offer),
+                          ? context.read<OfferViewModel>().removeFavoriteOffer(offer)
+                          : context.read<OfferViewModel>().addFavoriteOffer(offer),
                       child: Icon(
                         offer.isFavorite ? Icons.favorite : Icons.favorite_border_rounded,
                         color: offer.isFavorite ? Colors.red : Colors.grey.shade500,

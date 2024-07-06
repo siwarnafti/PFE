@@ -17,7 +17,7 @@ class SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<FavoriteViewModel>().loadFavoriteOffers();
+    context.read<OfferViewModel>().loadFavoriteOffers();
     Timer(const Duration(seconds: 6), () {
       Navigator.pushReplacement(
         context,

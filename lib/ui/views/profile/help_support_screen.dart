@@ -79,7 +79,7 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
         xlgSpacer(),
         _searchWidget(),
         mdSpacer(),
-        Container(
+        SizedBox(
           height: context.height * 0.7,
           child: SingleChildScrollView(
             child: Padding(

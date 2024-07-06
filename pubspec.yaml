@@ -45,7 +45,10 @@ dependencies:
   file_picker: ^8.0.5
   pdf_viewer_plugin: ^2.0.0
   win32: ^5.5.0 
-
+  flutter_slidable: ^3.1.0
+  flutter_speed_dial: ^7.0.0
+  fading_edge_scrollview: ^4.1.1
+  image_picker: ^1.0.4
 dev_dependencies:
   flutter_test:
     sdk: flutter
