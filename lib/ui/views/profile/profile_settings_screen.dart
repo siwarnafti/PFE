@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
 import 'package:mobile_app/ui/views/profile/profile_screen.dart';
+import 'package:mobile_app/ui/views/sign/on_boarding_screen.dart';
 import 'package:mobile_app/ui/widgets/expandable_tile.dart';
 
 import '../../presentation/presentation.dart';
@@ -381,20 +382,30 @@ class _SettingScreenState extends State<SettingScreen> {
         ),
       );
 
-  Widget _logoutButton() => Container(
-        margin: EdgeInsets.symmetric(horizontal: context.width * 0.1),
-        height: context.height * 0.06,
-        decoration: BoxDecoration(
-          color: const Color(0xFF5E569B),
-          borderRadius: BorderRadius.all(
-            Radius.circular(context.height * 0.1),
+  Widget _logoutButton() => GestureDetector(
+        onTap: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const OnboardingScreen()),
+          );
+        },
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: context.width * 0.1),
+          height: context.height * 0.06,
+          decoration: BoxDecoration(
+            color: const Color(0xFF5E569B),
+            borderRadius: BorderRadius.all(
+              Radius.circular(context.height * 0.1),
+            ),
           ),
-        ),
-        child: const Center(
-          child: Text(
-            "Log out",
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+          child: const Center(
+            child: Text(
+              "Log out",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
+            ),
           ),
         ),
       );
