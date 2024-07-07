@@ -49,7 +49,10 @@ dependencies:
   flutter_speed_dial: ^7.0.0
   fading_edge_scrollview: ^4.1.1
   image_picker: ^1.0.4
-  permission_handler: ^11.3.1
+  permission_handler: ^11.3.0
+  google_sign_in: ^5.0.3
+  firebase_core: ^2.32.0
+  firebase_auth: ^4.1.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
