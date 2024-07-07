@@ -29,113 +29,112 @@ class _OfferScreenState extends State<OfferScreen> {
     Mediaquery media = Mediaquery(mediaHeight: deviceHeight, mediaWidth: deviceWidth);
 
     return Consumer<OfferViewModel>(builder: (context, offerProvider, child) {
-      return SafeArea(
-        child: Scaffold(
-          body: Stack(
-            fit: StackFit.expand,
-            children: [
-              Positioned.fill(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _appBar(),
-                    SizedBox(
-                      width: context.width,
-                      height: context.height * 0.85,
-                      child: FadingEdgeScrollView.fromSingleChildScrollView(
-                        child: SingleChildScrollView(
-                          controller: scrollController,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: offerProvider.dummyOffers
-                                .map((e) => OfferWidget(
-                                      offer: e,
-                                    ))
-                                .toList(),
-                          ),
+      return Scaffold(
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            Positioned.fill(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  xlSpacer(),
+                  _appBar(),
+                  SizedBox(
+                    width: context.width,
+                    height: context.height * 0.85,
+                    child: FadingEdgeScrollView.fromSingleChildScrollView(
+                      child: SingleChildScrollView(
+                        controller: scrollController,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: offerProvider.dummyOffers
+                              .map((e) => OfferWidget(
+                                    offer: e,
+                                  ))
+                              .toList(),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              Positioned(
-                bottom: media.getHeight(20),
-                right: media.getwidht(15),
-                child: SpeedDial(
-                  overlayOpacity: 0.2,
-                  spaceBetweenChildren: 15,
-                  animatedIcon: AnimatedIcons.menu_close,
-                  backgroundColor: const Color.fromRGBO(143, 148, 251, 1),
-                  curve: Curves.slowMiddle,
-                  useRotationAnimation: true,
-                  children: [
-                    SpeedDialChild(
-                      child: Icon(
-                        Icons.add,
-                        color: Colors.purple,
-                        size: media.getwidht(25),
-                      ),
-                      label: "Create new Offer",
-                      onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          enableDrag: true,
-                          isDismissible: true,
-                          backgroundColor: Colors.transparent,
-                          builder: (context) => const CreateOfferBottomSheet(),
-                        );
-                      },
-                      labelBackgroundColor: const Color.fromRGBO(143, 148, 251, 0.6),
-                      labelStyle: TextStyle(
-                        fontSize: media.getwidht(16),
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Courgette',
-                        color: Colors.purple,
-                      ),
+            ),
+            Positioned(
+              bottom: media.getHeight(20),
+              right: media.getwidht(15),
+              child: SpeedDial(
+                overlayOpacity: 0.2,
+                spaceBetweenChildren: 15,
+                animatedIcon: AnimatedIcons.menu_close,
+                backgroundColor: const Color.fromRGBO(143, 148, 251, 1),
+                curve: Curves.slowMiddle,
+                useRotationAnimation: true,
+                children: [
+                  SpeedDialChild(
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.purple,
+                      size: media.getwidht(25),
                     ),
-                    SpeedDialChild(
-                      onTap: () {
-                        offerProvider.orderOfferBySalary();
-                      },
-                      child: Icon(
-                        Icons.lightbulb,
-                        color: Colors.purple,
-                        size: media.getwidht(25),
-                      ),
-                      label: "Order Offer",
-                      labelBackgroundColor: const Color.fromRGBO(143, 148, 251, 0.6),
-                      labelStyle: TextStyle(
-                        fontSize: media.getwidht(16),
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Courgette',
-                        color: Colors.purple,
-                      ),
+                    label: "Create new Offer",
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        enableDrag: true,
+                        isDismissible: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => const CreateOfferBottomSheet(),
+                      );
+                    },
+                    labelBackgroundColor: const Color.fromRGBO(143, 148, 251, 0.6),
+                    labelStyle: TextStyle(
+                      fontSize: media.getwidht(16),
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Courgette',
+                      color: Colors.purple,
                     ),
-                    SpeedDialChild(
-                      onTap: () {
-                        offerProvider.loadDummyOffers();
-                      },
-                      child: Icon(
-                        FontAwesomeIcons.arrowRotateRight,
-                        color: Colors.purple,
-                        size: media.getwidht(25),
-                      ),
-                      label: "All Offers",
-                      labelBackgroundColor: const Color.fromRGBO(143, 148, 251, 0.6),
-                      labelStyle: TextStyle(
-                        fontSize: media.getwidht(16),
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Courgette',
-                        color: Colors.purple,
-                      ),
+                  ),
+                  SpeedDialChild(
+                    onTap: () {
+                      offerProvider.orderOfferBySalary();
+                    },
+                    child: Icon(
+                      Icons.lightbulb,
+                      color: Colors.purple,
+                      size: media.getwidht(25),
                     ),
-                  ],
-                ),
+                    label: "Order Offer",
+                    labelBackgroundColor: const Color.fromRGBO(143, 148, 251, 0.6),
+                    labelStyle: TextStyle(
+                      fontSize: media.getwidht(16),
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Courgette',
+                      color: Colors.purple,
+                    ),
+                  ),
+                  SpeedDialChild(
+                    onTap: () {
+                      offerProvider.loadDummyOffers();
+                    },
+                    child: Icon(
+                      FontAwesomeIcons.arrowRotateRight,
+                      color: Colors.purple,
+                      size: media.getwidht(25),
+                    ),
+                    label: "All Offers",
+                    labelBackgroundColor: const Color.fromRGBO(143, 148, 251, 0.6),
+                    labelStyle: TextStyle(
+                      fontSize: media.getwidht(16),
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Courgette',
+                      color: Colors.purple,
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       );
     });
