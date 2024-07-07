@@ -21,7 +21,7 @@ class _AppliesScreenState extends State<AppliesScreen> {
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: context.width * 0.05,
+                horizontal: context.width * 0.049,
               ),
               child: ListView.builder(
                 itemCount: 10,
