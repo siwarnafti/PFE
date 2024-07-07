@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/presentation/presentation.dart';
+import 'package:mobile_app/ui/views/sign/entreprise_signin_screen.dart';
 import 'package:mobile_app/ui/views/sign/signin_screen.dart';
 import 'package:mobile_app/ui/views/sign/signup_screen.dart';
 
@@ -66,7 +67,7 @@ class OnboardingScreen extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => const OfferScreen()),
+                          MaterialPageRoute(builder: (context) => const EntrepriseSignInScreen()),
                         );
                       },
                       child: Container(

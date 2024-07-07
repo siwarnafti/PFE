@@ -4,6 +4,7 @@ import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/models/offer.dart';
@@ -50,8 +51,10 @@ class _CreateOfferBottomSheetState extends State<CreateOfferBottomSheet> {
 
   Future<void> _pickImageFromGallery() async {
     final ImagePicker picker = ImagePicker();
+    
+var status = await Permission.camera.status;
 
-    final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+  final XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       setState(() {
@@ -66,6 +69,8 @@ class _CreateOfferBottomSheetState extends State<CreateOfferBottomSheet> {
         );
       }
     }
+
+    
   }
 
   @override

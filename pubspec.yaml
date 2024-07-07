@@ -49,6 +49,7 @@ dependencies:
   flutter_speed_dial: ^7.0.0
   fading_edge_scrollview: ^4.1.1
   image_picker: ^1.0.4
+  permission_handler: ^11.3.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
