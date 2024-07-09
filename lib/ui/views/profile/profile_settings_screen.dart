@@ -301,28 +301,6 @@ class _SettingScreenState extends State<SettingScreen> {
         ),
       );
 
-  Widget _general() => Padding(
-        padding: const EdgeInsets.only(
-          left: Dimensions.md,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('General',
-                style: TextStyles.body0Medium(color: Colors.grey.shade500)),
-            settingItem(
-                settingName: 'Language',
-                settingIcon: Icons.language,
-                pressFunction: () {}),
-            settingItem(
-                settingName: 'Clear Cache',
-                settingIcon: Icons.restore_from_trash,
-                pressFunction: () {}),
-          ],
-        ),
-      );
-
   Widget _about() => Padding(
         padding: const EdgeInsets.only(
           left: Dimensions.md,
@@ -425,8 +403,6 @@ class _SettingScreenState extends State<SettingScreen> {
               _personalInfo(),
               xmdSpacer(),
               _security(),
-              xmdSpacer(),
-              _general(),
               xmdSpacer(),
               _about(),
               xlgSpacer(),

@@ -26,6 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final ScrollController _scrollController = ScrollController();
   Timer? _timer;
+  String location = '';
+  String keyword = '';
 
   @override
   void initState() {
@@ -151,6 +153,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     xxsSpacer(),
                     TextField(
+                      onChanged: (value) => setState(() {
+                        keyword = value.trim();
+                      }),
                       decoration: InputDecoration(
                         hintText: 'Search for anything',
                         hintStyle: TextStyles.body0Semibold(
@@ -181,6 +186,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     xxsSpacer(),
                     TextField(
+                      onChanged: (value) => setState(() {
+                        location = value.trim();
+                      }),
                       decoration: InputDecoration(
                         hintText: 'City,ect',
                         hintStyle: TextStyles.body0Semibold(
@@ -242,24 +250,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyles.buttonBold(color: Colors.black),
               ),
               const Spacer(),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: List.generate(
-                  context.watch<OfferViewModel>().dummyOffers.length,
-                  (index) => OfferIndicator(
-                    key: ValueKey(index),
-                    isSelected: index == selectedIndex,
-                    color: Colors.red,
-                  ),
-                ).withSpacing(xxxxsSpacer()),
-              ),
+              (location == '' && keyword == '')
+                  ? Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: List.generate(
+                        context.watch<OfferViewModel>().dummyOffers.length,
+                        (index) => OfferIndicator(
+                          key: ValueKey(index),
+                          isSelected: index == selectedIndex,
+                          color: Colors.red,
+                        ),
+                      ).withSpacing(xxxxsSpacer()),
+                    )
+                  : const Center(),
             ],
           ),
         ),
         xsSpacer(),
         CarouselSlider(
           options: CarouselOptions(
-            enableInfiniteScroll: true,
+            enableInfiniteScroll:
+                (location == '' && keyword == '') ? true : false,
             autoPlay: true,
             aspectRatio: 1.6,
             viewportFraction: 0.9,
@@ -271,10 +282,56 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           items: List.generate(
-            5,
+            (location == '' && keyword == '')
+                ? 5
+                : (location != '' && keyword == '')
+                    ? context
+                        .watch<OfferViewModel>()
+                        .dummyOffers
+                        .where(
+                            (element) => element.location.startsWith(location))
+                        .toList()
+                        .length
+                    : (location == '' && keyword != '')
+                        ? context
+                            .watch<OfferViewModel>()
+                            .dummyOffers
+                            .where(
+                                (element) => element.category.contains(keyword))
+                            .toList()
+                            .length
+                        : context
+                            .watch<OfferViewModel>()
+                            .dummyOffers
+                            .where((element) =>
+                                element.location.startsWith(location) &&
+                                element.category.contains(keyword))
+                            .toList()
+                            .length,
             (index) => OfferCard(
-              offer: context.watch<OfferViewModel>().dummyOffers[index],
-            ),
+                offer: (location == '' && keyword == '')
+                    ? context.watch<OfferViewModel>().dummyOffers[index]
+                    : (location != '' && keyword == '')
+                        ? context
+                            .watch<OfferViewModel>()
+                            .dummyOffers
+                            .where((element) =>
+                                element.location.startsWith(location))
+                            .toList()[index]
+                        : (location == '' && keyword != '')
+                            ? context
+                                .watch<OfferViewModel>()
+                                .dummyOffers
+                                .where((element) =>
+                                    element.category.contains(keyword))
+                                .toList()[index]
+                            : context
+                                .watch<OfferViewModel>()
+                                .dummyOffers
+                                .where((element) =>
+                                    element.location.startsWith(location) &&
+                                    element.category.contains(keyword))
+                                .toList()[index]),
           ).toList(),
         ),
       ];

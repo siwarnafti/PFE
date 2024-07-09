@@ -14,7 +14,8 @@ class HelpAndSupportScreen extends StatefulWidget {
 
 class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
   Widget _appBar() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Dimensions.sm, vertical: Dimensions.xxs),
+        padding: const EdgeInsets.symmetric(
+            horizontal: Dimensions.sm, vertical: Dimensions.xxs),
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -42,34 +43,6 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
         ),
       );
 
-  Widget _searchWidget() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Dimensions.sm),
-        child: TextField(
-          decoration: InputDecoration(
-            hintText: 'Search ',
-            hintStyle: TextStyles.body0Semibold(color: Colors.grey.withOpacity(0.8)),
-            prefixIcon: const Icon(Icons.search),
-            suffixIcon: Icon(FontAwesomeIcons.sliders, size: Dimensions.md, color: Colors.black.withOpacity(0.8)),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimensions.sm),
-              borderSide: BorderSide(color: Colors.grey.shade300),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimensions.sm),
-              borderSide: BorderSide(color: Colors.grey.shade300),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(Dimensions.sm),
-              borderSide: BorderSide(color: Colors.grey.shade300),
-            ),
-            filled: true,
-            fillColor: Colors.white,
-            contentPadding: Paddings.verticalXxxs,
-          ),
-          style: TextStyles.calloutRegular(color: Colors.black),
-        ),
-      );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,8 +50,6 @@ class _HelpAndSupportScreenState extends State<HelpAndSupportScreen> {
         xxlSpacer(),
         _appBar(),
         xlgSpacer(),
-        _searchWidget(),
-        mdSpacer(),
         SizedBox(
           height: context.height * 0.7,
           child: SingleChildScrollView(

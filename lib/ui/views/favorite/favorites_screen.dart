@@ -51,7 +51,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               textAlign: TextAlign.center,
             ),
             const Spacer(),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.filter_list_outlined), iconSize: Dimensions.xmd),
           ],
         ),
       );
@@ -59,6 +58,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget _searchWidget() => Padding(
         padding: const EdgeInsets.symmetric(horizontal: Dimensions.sm),
         child: TextField(
+        onChanged: (value) => setState(() {
+          
+        }),
           decoration: InputDecoration(
             hintText: 'Search ',
             hintStyle: TextStyles.body0Semibold(color: Colors.grey.withOpacity(0.8)),
@@ -132,7 +134,9 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget _favoriteOffersWidget() {
     final favoriteViewModel = context.watch<OfferViewModel>();
     return Column(
-      children: favoriteViewModel.favoriteOffers.keys.map((date) {
+      children: 
+      
+      favoriteViewModel.favoriteOffers.keys.map((date) {
         return Column(
           children: [
             _favoriteOfferInDay(date: date),
@@ -155,6 +159,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           Text(formattedDate, style: TextStyles.body1Medium(color: Colors.grey.shade500)),
           mdSpacer(),
           Column(
+            
             children: favoriteViewModel.favoriteOffers[date]!
                 .map((offer) {
                   return _favoriteOfferCard(offer);
