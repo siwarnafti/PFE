@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/presentation/presentation.dart';
 import 'package:mobile_app/ui/views/home_tab.dart';
+import 'package:mobile_app/ui/views/sign/signup_screen.dart';
 
 import '../../../core/services/google_auth.dart';
 import 'forgot_password_screen.dart';
@@ -292,7 +293,12 @@ class _SignInScreenState extends State<SignInScreen> {
                         fontWeight: FontWeight.bold),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                       Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                  );
+                    },
                     child: const Text(
                       "Register",
                       style: TextStyle(
