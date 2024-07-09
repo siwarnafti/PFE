@@ -9,11 +9,8 @@ class ChangePasswordBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: GestureDetector(
-        onTap: () {},
-        child: DraggableScrollableSheet(
+    return 
+        DraggableScrollableSheet(
           builder: (context, scrollController) => CustomPaint(
             size: Size(context.width, context.height * 0.1),
             painter: CurvePainter(
@@ -131,8 +128,8 @@ class ChangePasswordBottomSheet extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ),
-    );
+        );
+      
+    
   }
 }

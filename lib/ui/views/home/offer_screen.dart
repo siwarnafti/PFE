@@ -96,11 +96,11 @@ class _OfferScreenState extends State<OfferScreen> {
                       GestureDetector(
                         onTap: widget.offer.isFavorite
                             ? () {
-                                context.read<FavoriteViewModel>().removeFavoriteOffer(widget.offer);
+                                context.read<OfferViewModel>().removeFavoriteOffer(widget.offer);
                                 setState(() {});
                               }
                             : () {
-                                context.read<FavoriteViewModel>().addFavoriteOffer(widget.offer);
+                                context.read<OfferViewModel>().addFavoriteOffer(widget.offer);
                                 setState(() {});
                               },
                         child: Icon(

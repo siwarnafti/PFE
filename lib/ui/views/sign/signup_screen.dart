@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
+import 'package:mobile_app/ui/views/signin_screen.dart';
 
 import '../../presentation/presentation.dart';
 import '../../widgets/successful_popup.dart';
@@ -18,7 +19,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.width * 0.05, vertical: context.width * 0.05),
+        padding: EdgeInsets.symmetric(
+            horizontal: context.width * 0.05, vertical: context.width * 0.05),
         child: SingleChildScrollView(
           child: Column(
             children: [
@@ -29,7 +31,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     onTap: () => Navigator.pop(context),
                     child: Container(
                       padding: EdgeInsets.all(context.width * 0.02),
-                      decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.withOpacity(0.3)),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.grey.withOpacity(0.3)),
                       child: const Icon(Icons.arrow_back),
                     ),
                   ),
@@ -58,13 +62,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'First Name',
-                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
                   )),
               SizedBox(
                 height: context.height * 0.01,
               ),
               Container(
-                decoration: BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
+                decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(12)),
                 child: TextField(
                   decoration: InputDecoration(
                     fillColor: Colors.red,
@@ -91,13 +100,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Last Name',
-                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
                   )),
               SizedBox(
                 height: context.height * 0.01,
               ),
               Container(
-                decoration: BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
+                decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(12)),
                 child: TextField(
                   decoration: InputDecoration(
                     fillColor: Colors.red,
@@ -124,13 +138,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   alignment: Alignment.centerLeft,
                   child: Text(
                     'Email Address',
-                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(
+                        color: Colors.grey,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15),
                   )),
               SizedBox(
                 height: context.height * 0.01,
               ),
               Container(
-                decoration: BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
+                decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(12)),
                 child: TextField(
                   decoration: InputDecoration(
                     fillColor: Colors.red,
@@ -157,21 +176,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Password',
-                  style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 15),
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
                 ),
               ),
               SizedBox(
                 height: context.height * 0.01,
               ),
               Container(
-                decoration: BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
+                decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(12)),
                 child: TextField(
                   obscureText: obscureText,
                   keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
                     fillColor: Colors.red,
                     suffixIcon: IconButton(
-                      icon: Icon(!obscureText ? Icons.visibility : Icons.visibility_off),
+                      icon: Icon(!obscureText
+                          ? Icons.visibility
+                          : Icons.visibility_off),
                       onPressed: () => setState(() {
                         obscureText = !obscureText;
                       }),
@@ -199,21 +225,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Confirm Password',
-                  style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 15),
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
                 ),
               ),
               SizedBox(
                 height: context.height * 0.01,
               ),
               Container(
-                decoration: BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
+                decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(12)),
                 child: TextField(
                   obscureText: obscureText,
                   keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
                     fillColor: Colors.red,
                     suffixIcon: IconButton(
-                      icon: Icon(!obscureText ? Icons.visibility : Icons.visibility_off),
+                      icon: Icon(!obscureText
+                          ? Icons.visibility
+                          : Icons.visibility_off),
                       onPressed: () => setState(() {
                         obscureText = !obscureText;
                       }),
@@ -258,7 +291,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: const Center(
                     child: Text(
                       "Sign In",
-                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
                     ),
                   ),
                 ),
@@ -269,13 +305,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: [
                   Text(
                     "Alreay have an account? ",
-                    style: TextStyle(color: Colors.black.withOpacity(0.5), fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.black.withOpacity(0.5),
+                        fontWeight: FontWeight.bold),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const SignInScreen()),
+                      );
+                    },
                     child: const Text(
                       "Register",
-                      style: TextStyle(color: Color(0xFF5E569B), fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          color: Color(0xFF5E569B),
+                          fontWeight: FontWeight.bold),
                     ),
                   )
                 ],

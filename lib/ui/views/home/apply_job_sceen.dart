@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
 import 'package:mobile_app/ui/widgets/upload_cv_widget.dart';
 
@@ -14,9 +13,9 @@ class ApplyJobScreen extends StatefulWidget {
 
 class _ApplyJobScreenState extends State<ApplyJobScreen> {
   bool showFirst = true;
+
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.width * 0.05),
@@ -30,9 +29,7 @@ class _ApplyJobScreenState extends State<ApplyJobScreen> {
                   onTap: () => Navigator.pop(context),
                   child: Container(
                     padding: EdgeInsets.all(context.width * 0.02),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey.withOpacity(0.3)),
+                    decoration: BoxDecoration(shape: BoxShape.circle, color: Colors.grey.withOpacity(0.3)),
                     child: const Icon(
                       Icons.arrow_back,
                       color: Colors.black,
@@ -44,10 +41,7 @@ class _ApplyJobScreenState extends State<ApplyJobScreen> {
                 ),
                 const Text(
                   'Job Detail',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Colors.black),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -73,18 +67,14 @@ class _ApplyJobScreenState extends State<ApplyJobScreen> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Your Fullname',
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15),
+                        style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 15),
                       )),
                   SizedBox(
                     height: context.height * 0.01,
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(12)),
+                    decoration:
+                        BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
                     child: TextField(
                       decoration: InputDecoration(
                         fillColor: Colors.red,
@@ -111,26 +101,21 @@ class _ApplyJobScreenState extends State<ApplyJobScreen> {
                       alignment: Alignment.centerLeft,
                       child: Text(
                         'Email Address',
-                        style: TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15),
+                        style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 15),
                       )),
                   SizedBox(
                     height: context.height * 0.01,
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(12)),
+                    decoration:
+                        BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
                     child: TextField(
                       decoration: InputDecoration(
                         fillColor: Colors.red,
                         labelStyle: TextStyle(
                           color: Colors.black.withOpacity(0.6),
                         ),
-                        hintText:
-                            'Enter your email address Ex: siwar.nafti@gmail.com',
+                        hintText: 'Enter your email address Ex: siwar.nafti@gmail.com',
                         hintStyle: TextStyle(
                           color: Colors.black.withOpacity(0.4),
                         ),
@@ -150,19 +135,15 @@ class _ApplyJobScreenState extends State<ApplyJobScreen> {
                     alignment: Alignment.centerLeft,
                     child: Text(
                       'Your Phone',
-                      style: TextStyle(
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15),
+                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 15),
                     ),
                   ),
                   SizedBox(
                     height: context.height * 0.01,
                   ),
                   Container(
-                    decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(12)),
+                    decoration:
+                        BoxDecoration(color: Colors.grey.withOpacity(0.2), borderRadius: BorderRadius.circular(12)),
                     child: TextField(
                       decoration: InputDecoration(
                         fillColor: Colors.red,
@@ -187,10 +168,8 @@ class _ApplyJobScreenState extends State<ApplyJobScreen> {
                   ),
                 ],
               ),
-              secondChild: UploadCv(),
-              crossFadeState: showFirst
-                  ? CrossFadeState.showFirst
-                  : CrossFadeState.showSecond,
+              secondChild: const UploadCv(),
+              crossFadeState: showFirst ? CrossFadeState.showFirst : CrossFadeState.showSecond,
               duration: const Duration(milliseconds: 600),
             ),
             GestureDetector(
@@ -198,7 +177,6 @@ class _ApplyJobScreenState extends State<ApplyJobScreen> {
                 setState(() {
                   showFirst = !showFirst;
                 });
-                print(showFirst);
               },
               child: Container(
                 margin: EdgeInsets.all(context.height * 0.07),

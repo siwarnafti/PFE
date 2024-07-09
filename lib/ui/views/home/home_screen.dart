@@ -234,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: List.generate(
-                  context.watch<FavoriteViewModel>().dummyOffers.length,
+                  context.watch<OfferViewModel>().dummyOffers.length,
                   (index) => OfferIndicator(
                     key: ValueKey(index),
                     isSelected: index == selectedIndex,
@@ -262,7 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
           items: List.generate(
             5,
             (index) => OfferCard(
-              offer: context.watch<FavoriteViewModel>().dummyOffers[index],
+              offer: context.watch<OfferViewModel>().dummyOffers[index],
             ),
           ).toList(),
         ),

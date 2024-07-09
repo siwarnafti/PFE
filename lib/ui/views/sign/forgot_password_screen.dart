@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
 import 'package:mobile_app/ui/presentation/presentation.dart';
+import 'package:mobile_app/ui/views/sign/on_boarding_screen.dart';
 
-class ForgotPasswordScreen extends StatelessWidget {
+import '../../widgets/curve_painter.dart';
+
+class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
 
+  @override
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
+}
+
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  bool obscureText = true;
   @override
   Widget build(BuildContext context) {
     final deviceHeight = MediaQuery.sizeOf(context).height;
@@ -86,14 +97,155 @@ class ForgotPasswordScreen extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => Container(
-                    height: 20,
-                    width: 20,
-                    color: Colors.green,
-                  ),
-                );
+                showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    enableDrag: true,
+                    isDismissible: true,
+                    backgroundColor: Colors.transparent,
+                    builder: (context) => DraggableScrollableSheet(
+                          builder: (context, scrollController) => CustomPaint(
+                            size: Size(context.width, context.height * 0.1),
+                            painter: CurvePainter(
+                              reversed: true,
+                              colors: [
+                                Colors.white,
+                                Colors.white,
+                              ],
+                              deviceHeight: context.height,
+                              direction: Axis.vertical,
+                              curveStrength: 1.5,
+                            ),
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: Dimensions.md,
+                                ),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      const Text(
+                                        'Change Password',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 20,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                      const SizedBox(height: 20),
+                                      TextField(
+                                        decoration: InputDecoration(
+                                          labelText: 'New Password',
+                                          hintStyle: TextStyles.body0Semibold(
+                                              color: Colors.black),
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                Dimensions.sm),
+                                            borderSide: BorderSide(
+                                                color: Colors.black
+                                                    .withOpacity(0.8)),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                Dimensions.sm),
+                                            borderSide: BorderSide(
+                                                color: Colors.black
+                                                    .withOpacity(0.8)),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                Dimensions.sm),
+                                            borderSide: BorderSide(
+                                                color: Colors.black
+                                                    .withOpacity(0.8)),
+                                          ),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                            horizontal: Dimensions.sm,
+                                            vertical: Dimensions.xxxs,
+                                          ),
+                                        ),
+                                        style: TextStyles.calloutRegular(
+                                            color: Colors.black),
+                                      ),
+                                      const SizedBox(height: 20),
+                                      TextField(
+                                        decoration: InputDecoration(
+                                          labelText: 'Confirm New Password',
+                                          hintStyle: TextStyles.body0Semibold(
+                                              color: Colors.black),
+                                          border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                Dimensions.sm),
+                                            borderSide: BorderSide(
+                                                color: Colors.black
+                                                    .withOpacity(0.8)),
+                                          ),
+                                          enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                Dimensions.sm),
+                                            borderSide: BorderSide(
+                                                color: Colors.black
+                                                    .withOpacity(0.8)),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                Dimensions.sm),
+                                            borderSide: BorderSide(
+                                                color: Colors.black
+                                                    .withOpacity(0.8)),
+                                          ),
+                                          filled: true,
+                                          fillColor: Colors.white,
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                            horizontal: Dimensions.sm,
+                                            vertical: Dimensions.xxxs,
+                                          ),
+                                        ),
+                                        style: TextStyles.calloutRegular(
+                                            color: Colors.black),
+                                      ),
+                                      const SizedBox(height: 40),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const OnboardingScreen()),
+                                          );
+                                        },
+                                        child: Container(
+                                          height: deviceHeight * 0.06,
+                                          width: deviceWidth * 0.5,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFF5E569B),
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(
+                                                  deviceHeight * 0.1),
+                                            ),
+                                          ),
+                                          child: const Center(
+                                            child: Text(
+                                              "Change Password",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 18),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ));
               },
               child: Container(
                 height: deviceHeight * 0.06,

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_app/ui/presentation/presentation.dart';
+import 'package:mobile_app/ui/views/sign/entreprise_signin_screen.dart';
 import 'package:mobile_app/ui/views/sign/signin_screen.dart';
 import 'package:mobile_app/ui/views/sign/signup_screen.dart';
+
+import '../entreprise/offers_screen.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
@@ -61,8 +64,12 @@ class OnboardingScreen extends StatelessWidget {
                 Column(
                   children: [
                     GestureDetector(
-                      //fonctionnialité
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const EntrepriseSignInScreen()),
+                        );
+                      },
                       child: Container(
                         padding: Paddings.allSm,
                         decoration: BoxDecoration(
