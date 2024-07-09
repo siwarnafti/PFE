@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_app/core/viewmodels/offer_view_model.dart';
 import 'package:mobile_app/ui/presentation/extensions/list_spacing.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
+import 'package:mobile_app/ui/views/notif_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/fake_data/company.dart';
@@ -65,7 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _appBar() => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: Dimensions.sm, vertical: Dimensions.xxs),
+        padding: const EdgeInsets.symmetric(
+            horizontal: Dimensions.sm, vertical: Dimensions.xxs),
         child: Row(
           children: [
             const CircleAvatar(
@@ -80,7 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   'Hi Welcome 🙌',
-                  style: TextStyles.calloutRegular(color: Colors.grey.withOpacity(0.8)),
+                  style: TextStyles.calloutRegular(
+                      color: Colors.grey.withOpacity(0.8)),
                 ),
                 Text(
                   'Dustin Bates',
@@ -92,7 +95,13 @@ class _HomeScreenState extends State<HomeScreen> {
             Stack(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const NotificationScreen()),
+                    );
+                  },
                   icon: const Icon(Icons.notifications_none),
                   iconSize: Dimensions.xmd,
                 ),
@@ -144,7 +153,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     TextField(
                       decoration: InputDecoration(
                         hintText: 'Search for anything',
-                        hintStyle: TextStyles.body0Semibold(color: Colors.grey.withOpacity(0.8)),
+                        hintStyle: TextStyles.body0Semibold(
+                            color: Colors.grey.withOpacity(0.8)),
                         prefixIcon: const Icon(Icons.search),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(Dimensions.sm),
@@ -173,7 +183,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     TextField(
                       decoration: InputDecoration(
                         hintText: 'City,ect',
-                        hintStyle: TextStyles.body0Semibold(color: Colors.grey.withOpacity(0.8)),
+                        hintStyle: TextStyles.body0Semibold(
+                            color: Colors.grey.withOpacity(0.8)),
                         prefixIcon: const Icon(Icons.location_on_outlined),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(Dimensions.sm),
@@ -282,7 +293,8 @@ class _HomeScreenState extends State<HomeScreen> {
               const Spacer(),
               Text(
                 'see all',
-                style: TextStyles.buttonRegular(color: Colors.grey.withOpacity(0.8)),
+                style: TextStyles.buttonRegular(
+                    color: Colors.grey.withOpacity(0.8)),
               ),
             ],
           ),

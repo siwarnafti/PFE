@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
+import 'package:mobile_app/ui/views/notif_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/viewmodels/offer_view_model.dart';
@@ -168,7 +169,12 @@ class _OfferScreenState extends State<OfferScreen> {
             Stack(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                     Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const NotificationScreen()),
+                  );
+                  },
                   icon: const Icon(Icons.notifications_none),
                   iconSize: Dimensions.xmd,
                 ),
