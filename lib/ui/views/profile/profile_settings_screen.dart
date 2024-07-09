@@ -404,7 +404,7 @@ class _SettingScreenState extends State<SettingScreen> {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 18),
+                  fontSize: 19),
             ),
           ),
         ),
