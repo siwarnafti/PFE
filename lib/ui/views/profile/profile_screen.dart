@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_app/core/viewmodels/user_view_model.dart';
 import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
 import 'package:mobile_app/ui/views/home_tab.dart';
+import 'package:provider/provider.dart';
 
 import '../../presentation/presentation.dart';
 
@@ -13,6 +15,27 @@ class ProfileSettings extends StatefulWidget {
 
 class _ProfileSettingsState extends State<ProfileSettings> {
   int _genderchecked = 0;
+  late TextEditingController _firstNameController;
+  late TextEditingController _lastNameController;
+  late TextEditingController _emailController;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize controllers with current user data
+    _firstNameController = TextEditingController(text: context.read<UserViewModel>().firstName ?? '');
+    _lastNameController = TextEditingController(text: context.read<UserViewModel>().lastName ?? '');
+    _emailController = TextEditingController(text: context.read<UserViewModel>().email ?? '');
+  }
+
+  @override
+  void dispose() {
+    // Dispose controllers
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    super.dispose();
+  }
 
   Widget _appBar() => Padding(
         padding: const EdgeInsets.symmetric(horizontal: Dimensions.sm, vertical: Dimensions.xxs),
@@ -122,14 +145,37 @@ class _ProfileSettingsState extends State<ProfileSettings> {
         padding: const EdgeInsets.symmetric(vertical: Dimensions.xxs),
         width: context.width * 0.8,
         decoration: BoxDecoration(
-          color: Colors.grey.shade200,
+          color: const Color(0xFF5E569B),
           border: Border.all(color: Colors.grey.shade200),
           borderRadius: BorderRadius.circular(Dimensions.md),
         ),
-        child: Center(child: Text("Save Changes", style: TextStyles.buttonRegular(color: Colors.grey))),
+        child: TextButton(
+          onPressed: () {
+            if (context.read<UserViewModel>().firstName == _firstNameController.text &&
+                context.read<UserViewModel>().lastName == _lastNameController.text &&
+                context.read<UserViewModel>().email == _emailController.text) {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text('Nothing To change'),
+                duration: Duration(seconds: 2),
+              ));
+            }
+            context.read<UserViewModel>().updateUserData(
+                  firstName: _firstNameController.text.isNotEmpty ? _firstNameController.text : null,
+                  lastName: _lastNameController.text.isNotEmpty ? _lastNameController.text : null,
+                  email: _emailController.text.isNotEmpty ? _emailController.text : null,
+                );
+
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text('Profile updated successfully'),
+              duration: Duration(seconds: 2),
+            ));
+            Navigator.pop(context);
+          },
+          child: Center(child: Text("Save Changes", style: TextStyles.buttonRegular(color: Colors.white))),
+        ),
       );
 
-  Widget _field({required String label, required String value}) => Padding(
+  Widget _field({required String label, required TextEditingController controller}) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: Dimensions.md),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,8 +183,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
             Text(label, style: TextStyles.body0Regular(color: Colors.grey.shade500)),
             xxxsSpacer(),
             TextField(
+              controller: controller,
               decoration: InputDecoration(
-                hintText: value,
+                hintText: label,
                 hintStyle: TextStyles.body0Semibold(color: Colors.black),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(Dimensions.sm),
@@ -305,13 +352,14 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               xmdSpacer(),
               _userInfo(),
               xxxlSpacer(),
-              _field(label: 'First Name', value: 'Andy'),
+              _field(label: 'First Name', controller: _firstNameController),
               xsSpacer(),
-              _field(label: 'Last Name', value: 'Lexsian'),
+              _field(label: 'Last Name', controller: _lastNameController),
               xsSpacer(),
-              _field(label: 'Email', value: 'AndyLexsian@gmail.com'),
+              _field(label: 'Email', controller: _emailController),
               xsSpacer(),
-              _field(label: 'Date of Birth', value: '24 february 1996'),
+              _field(label: 'Date of Birth', controller: TextEditingController(text: '24 february 1996')),
+              // Static text for Date of Birth
               xsSpacer(),
               _genderField(),
               xsSpacer(),

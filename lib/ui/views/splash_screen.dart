@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:mobile_app/core/viewmodels/user_view_model.dart';
+import 'package:mobile_app/ui/views/home_tab.dart';
 import 'package:mobile_app/ui/views/sign/on_boarding_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -18,12 +20,23 @@ class SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     context.read<OfferViewModel>().loadFavoriteOffers();
-    Timer(const Duration(seconds: 6), () {
+    _loadUser();
+  }
+
+  _loadUser() async {
+    await context.read<UserViewModel>().init();
+    await Future.delayed(const Duration(seconds: 6));
+    if (context.read<UserViewModel>().isSignedUp) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeTab()),
+      );
+    } else {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const OnboardingScreen()),
       );
-    });
+    }
   }
 
   @override

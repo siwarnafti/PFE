@@ -9,6 +9,7 @@ import 'package:mobile_app/ui/views/notif_screen.dart';
 import 'package:provider/provider.dart';
 
 import '../../../core/fake_data/company.dart';
+import '../../../core/viewmodels/user_view_model.dart';
 import '../../presentation/presentation.dart';
 import '../../widgets/company_card.dart';
 import '../../widgets/offer_card.dart';
@@ -68,60 +69,61 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _appBar() => Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: Dimensions.sm, vertical: Dimensions.xxs),
-        child: Row(
-          children: [
-            const CircleAvatar(
-              radius: 20,
-              backgroundImage: AssetImage('assets/avatar_user.jpg'),
-            ),
-            xsSpacer(),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.symmetric(horizontal: Dimensions.sm, vertical: Dimensions.xxs),
+        child: Consumer<UserViewModel>(
+          builder: (context, userViewModel, _) {
+            return Row(
               children: [
-                Text(
-                  'Hi Welcome 🙌',
-                  style: TextStyles.calloutRegular(
-                      color: Colors.grey.withOpacity(0.8)),
+                CircleAvatar(
+                  radius: 20,
+                  backgroundImage: AssetImage('assets/avatar_user.jpg'),
                 ),
-                Text(
-                  'Dustin Bates',
-                  style: TextStyles.buttonBold(color: Colors.black),
-                ),
-              ],
-            ),
-            const Spacer(),
-            Stack(
-              children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const NotificationScreen()),
-                    );
-                  },
-                  icon: const Icon(Icons.notifications_none),
-                  iconSize: Dimensions.xmd,
-                ),
-                Positioned(
-                  top: 16,
-                  left: 24,
-                  child: Container(
-                    width: context.width * 0.024,
-                    height: context.width * 0.024,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF85358),
-                      borderRadius: BorderRadius.circular(Dimensions.md),
+                xsSpacer(),
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Hi Welcome 🙌',
+                      style: TextStyles.calloutRegular(color: Colors.grey.withOpacity(0.8)),
                     ),
-                  ),
+                    Text(
+                      userViewModel.firstName ?? 'Dustin Bates',
+                      style: TextStyles.buttonBold(color: Colors.black),
+                    ),
+                  ],
+                ),
+                Spacer(),
+                Stack(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const NotificationScreen()),
+                        );
+                      },
+                      icon: const Icon(Icons.notifications_none),
+                      iconSize: Dimensions.xmd,
+                    ),
+                    Positioned(
+                      top: 16,
+                      left: 24,
+                      child: Container(
+                        width: context.width * 0.024,
+                        height: context.width * 0.024,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFF85358),
+                          borderRadius: BorderRadius.circular(Dimensions.md),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
-            ),
-          ],
+            );
+          },
         ),
       );
 
@@ -158,8 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       }),
                       decoration: InputDecoration(
                         hintText: 'Search for anything',
-                        hintStyle: TextStyles.body0Semibold(
-                            color: Colors.grey.withOpacity(0.8)),
+                        hintStyle: TextStyles.body0Semibold(color: Colors.grey.withOpacity(0.8)),
                         prefixIcon: const Icon(Icons.search),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(Dimensions.sm),
@@ -191,8 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       }),
                       decoration: InputDecoration(
                         hintText: 'City,ect',
-                        hintStyle: TextStyles.body0Semibold(
-                            color: Colors.grey.withOpacity(0.8)),
+                        hintStyle: TextStyles.body0Semibold(color: Colors.grey.withOpacity(0.8)),
                         prefixIcon: const Icon(Icons.location_on_outlined),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(Dimensions.sm),
@@ -269,8 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
         xsSpacer(),
         CarouselSlider(
           options: CarouselOptions(
-            enableInfiniteScroll:
-                (location == '' && keyword == '') ? true : false,
+            enableInfiniteScroll: (location == '' && keyword == '') ? true : false,
             autoPlay: true,
             aspectRatio: 1.6,
             viewportFraction: 0.9,
@@ -288,24 +287,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     ? context
                         .watch<OfferViewModel>()
                         .dummyOffers
-                        .where(
-                            (element) => element.location.startsWith(location))
+                        .where((element) => element.location.startsWith(location))
                         .toList()
                         .length
                     : (location == '' && keyword != '')
                         ? context
                             .watch<OfferViewModel>()
                             .dummyOffers
-                            .where(
-                                (element) => element.category.contains(keyword))
+                            .where((element) => element.category.contains(keyword))
                             .toList()
                             .length
                         : context
                             .watch<OfferViewModel>()
                             .dummyOffers
                             .where((element) =>
-                                element.location.startsWith(location) &&
-                                element.category.contains(keyword))
+                                element.location.startsWith(location) && element.category.contains(keyword))
                             .toList()
                             .length,
             (index) => OfferCard(
@@ -315,22 +311,19 @@ class _HomeScreenState extends State<HomeScreen> {
                         ? context
                             .watch<OfferViewModel>()
                             .dummyOffers
-                            .where((element) =>
-                                element.location.startsWith(location))
+                            .where((element) => element.location.startsWith(location))
                             .toList()[index]
                         : (location == '' && keyword != '')
                             ? context
                                 .watch<OfferViewModel>()
                                 .dummyOffers
-                                .where((element) =>
-                                    element.category.contains(keyword))
+                                .where((element) => element.category.contains(keyword))
                                 .toList()[index]
                             : context
                                 .watch<OfferViewModel>()
                                 .dummyOffers
                                 .where((element) =>
-                                    element.location.startsWith(location) &&
-                                    element.category.contains(keyword))
+                                    element.location.startsWith(location) && element.category.contains(keyword))
                                 .toList()[index]),
           ).toList(),
         ),
@@ -350,8 +343,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const Spacer(),
               Text(
                 'see all',
-                style: TextStyles.buttonRegular(
-                    color: Colors.grey.withOpacity(0.8)),
+                style: TextStyles.buttonRegular(color: Colors.grey.withOpacity(0.8)),
               ),
             ],
           ),
