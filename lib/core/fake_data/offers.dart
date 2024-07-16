@@ -8,7 +8,11 @@ final List<Offer> fakeOffers = [
     imageUrl: 'assets/KickStarter_Studio.jpeg',
     salary: 1800,
     location: 'Ho Chi Minh City',
-    category: ['Front end', 'Full Time', 'Gsap'],
+    category: [
+      'Front end',
+      'Full Time',
+      'Remote',
+    ],
     id: '1',
   ),
   Offer(
@@ -28,7 +32,7 @@ final List<Offer> fakeOffers = [
     imageUrl: 'assets/Creative_Minds.jpg',
     salary: 1300,
     location: 'New York',
-    category: ['Design', 'Contract', 'Figma'],
+    category: ['Design', 'Internship', 'Figma'],
     id: '3',
   ),
   Offer(
@@ -41,7 +45,6 @@ final List<Offer> fakeOffers = [
     category: ['Data Science', 'Full Time', 'Python'],
     id: '4',
   ),
-  
   Offer(
     title: 'Mobile App Developer',
     company: 'App Creators LLC',
@@ -49,7 +52,10 @@ final List<Offer> fakeOffers = [
     imageUrl: 'assets/App_Creators_LLC.png',
     salary: 1400,
     location: 'Austin',
-    category: ['Mobile Development', 'Full Time', ],
+    category: [
+      'Mobile Development',
+      'Part Time',
+    ],
     id: '5',
   ),
 ];

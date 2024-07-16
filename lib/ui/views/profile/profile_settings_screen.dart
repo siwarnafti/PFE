@@ -4,7 +4,9 @@ import 'package:mobile_app/ui/presentation/extensions/media_query.dart';
 import 'package:mobile_app/ui/views/profile/profile_screen.dart';
 import 'package:mobile_app/ui/views/sign/on_boarding_screen.dart';
 import 'package:mobile_app/ui/widgets/expandable_tile.dart';
+import 'package:provider/provider.dart';
 
+import '../../../core/viewmodels/user_view_model.dart';
 import '../../presentation/presentation.dart';
 import 'change_password_bottom_sheet.dart';
 import 'help_support_screen.dart';
@@ -20,8 +22,7 @@ class _SettingScreenState extends State<SettingScreen> {
   bool _isSwitched = false;
 
   Widget _appBar() => Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: Dimensions.sm, vertical: Dimensions.xxs),
+        padding: const EdgeInsets.symmetric(horizontal: Dimensions.sm, vertical: Dimensions.xxs),
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -39,37 +40,37 @@ class _SettingScreenState extends State<SettingScreen> {
         ),
       );
 
-  Widget _userInfo() => Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          lgSpacer(),
-          const CircleAvatar(
-            radius: 30,
-            backgroundImage: AssetImage('assets/avatar_user.jpg'),
-          ),
-          xxsSpacer(),
-          Column(
+  Widget _userInfo() => Consumer<UserViewModel>(
+        builder: (context, userViewModel, _) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'John Doe',
-                style: TextStyles.buttonSemibold(),
+              lgSpacer(),
+              CircleAvatar(
+                radius: 30,
+                backgroundImage: AssetImage('assets/avatar_user.jpg'),
               ),
-              Text(
-                '@johndoe',
-                style: TextStyles.calloutBold(color: Colors.grey),
-              ),
+              xxsSpacer(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    userViewModel.firstName ?? 'John Doe',
+                    style: TextStyles.buttonSemibold(),
+                  ),
+                  Text(
+                    userViewModel.email ?? '@johndoe',
+                    style: TextStyles.calloutBold(color: Colors.grey),
+                  ),
+                ],
+              )
             ],
-          )
-        ],
+          );
+        },
       );
 
-  Widget settingItem(
-          {required settingName,
-          required IconData settingIcon,
-          required pressFunction}) =>
-      GestureDetector(
+  Widget settingItem({required settingName, required IconData settingIcon, required pressFunction}) => GestureDetector(
         onTap: pressFunction,
         child: ListTile(
           title: Text(settingName, style: TextStyles.buttonMedium()),
@@ -94,16 +95,12 @@ class _SettingScreenState extends State<SettingScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Personal Information',
-                style: TextStyles.body0Medium(color: Colors.grey.shade500)),
+            Text('Personal Information', style: TextStyles.body0Medium(color: Colors.grey.shade500)),
             settingItem(
                 settingName: 'Profile',
                 settingIcon: Icons.person_3_outlined,
                 pressFunction: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ProfileSettings()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileSettings()));
                 }),
             ExpandableTile(
                 title: 'Notifications',
@@ -118,8 +115,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       Row(
                         children: [
                           const SizedBox(width: 30),
-                          Text('Push Notifications',
-                              style: TextStyles.calloutRegular()),
+                          Text('Push Notifications', style: TextStyles.calloutRegular()),
                           const Spacer(),
                           SizedBox(
                             height: 30,
@@ -142,8 +138,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       Row(
                         children: [
                           const SizedBox(width: 30),
-                          Text('Push Notifications',
-                              style: TextStyles.calloutRegular()),
+                          Text('Push Notifications', style: TextStyles.calloutRegular()),
                           const Spacer(),
                           SizedBox(
                             height: 30,
@@ -166,8 +161,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       Row(
                         children: [
                           const SizedBox(width: 30),
-                          Text('Push Notifications',
-                              style: TextStyles.calloutRegular()),
+                          Text('Push Notifications', style: TextStyles.calloutRegular()),
                           const Spacer(),
                           SizedBox(
                             height: 30,
@@ -201,8 +195,7 @@ class _SettingScreenState extends State<SettingScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Security',
-                style: TextStyles.body0Medium(color: Colors.grey.shade500)),
+            Text('Security', style: TextStyles.body0Medium(color: Colors.grey.shade500)),
             settingItem(
                 settingName: 'Change Password',
                 settingIcon: Icons.lock_outline,
@@ -251,8 +244,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     xxxsSpacer(),
                     Row(
                       children: [
-                        Text('Remember Password',
-                            style: TextStyles.calloutRegular()),
+                        Text('Remember Password', style: TextStyles.calloutRegular()),
                         const Spacer(),
                         SizedBox(
                           height: 30,
@@ -309,8 +301,7 @@ class _SettingScreenState extends State<SettingScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('About',
-                style: TextStyles.body0Medium(color: Colors.grey.shade500)),
+            Text('About', style: TextStyles.body0Medium(color: Colors.grey.shade500)),
             settingItem(
                 settingName: 'Legal and Policies',
                 settingIcon: Icons.shield_outlined,
@@ -329,12 +320,10 @@ class _SettingScreenState extends State<SettingScreen> {
                             child: Column(
                               children: [
                                 lgSpacer(),
-                                Text('Legal and Policies',
-                                    style: TextStyles.title2Bold()),
+                                Text('Legal and Policies', style: TextStyles.title2Bold()),
                                 const SizedBox(height: 20),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: Dimensions.md),
+                                  padding: const EdgeInsets.symmetric(horizontal: Dimensions.md),
                                   child: Text(
                                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Don egestas, urna nec tincidunt.\n'
                                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget nunc. Don egestas, urna nec tincidunt.'
@@ -362,6 +351,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
   Widget _logoutButton() => GestureDetector(
         onTap: () {
+          context.read<UserViewModel>().signOut();
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const OnboardingScreen()),
@@ -379,10 +369,7 @@ class _SettingScreenState extends State<SettingScreen> {
           child: const Center(
             child: Text(
               "Log out",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 19),
+              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 19),
             ),
           ),
         ),

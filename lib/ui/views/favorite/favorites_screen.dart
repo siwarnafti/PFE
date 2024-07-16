@@ -20,7 +20,7 @@ class FavoritesScreen extends StatefulWidget {
 
 class _FavoritesScreenState extends State<FavoritesScreen> {
   int _currentIndex = 0;
-  final List _searchItems = [
+  late final List _searchItems = [
     'All Jobs',
     'Full Time',
     'Part Time',
@@ -32,11 +32,67 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     'Commission',
     'Volunteer',
   ];
+  Map<String, List<Offer>> _filteredOffers = {};
+  String _searchQuery = '';
 
   @override
   void initState() {
     super.initState();
     initializeDateFormatting();
+    _initializeOffers();
+  }
+
+  void _initializeOffers() {
+    _filteredOffers = context.read<OfferViewModel>().favoriteOffers;
+  }
+
+  void _search(String query) {
+    setState(() {
+      _searchQuery = query.toLowerCase();
+      final favoriteOffers = context.read<OfferViewModel>().favoriteOffers;
+
+      final filteredEntries = favoriteOffers.entries.where((entry) {
+        final offers = entry.value;
+        final filteredOffers = offers.where((offer) {
+          return offer.title.toLowerCase().contains(_searchQuery) ||
+              offer.company.toLowerCase().contains(_searchQuery) ||
+              offer.location.toLowerCase().contains(_searchQuery);
+        }).toList();
+        return filteredOffers.isNotEmpty;
+      }).map((entry) {
+        return MapEntry(
+            entry.key,
+            entry.value.where((offer) {
+              return offer.title.toLowerCase().contains(_searchQuery) ||
+                  offer.company.toLowerCase().contains(_searchQuery) ||
+                  offer.location.toLowerCase().contains(_searchQuery);
+            }).toList());
+      });
+
+      _filteredOffers = Map<String, List<Offer>>.fromEntries(filteredEntries);
+    });
+  }
+
+  void _filterByCategory(String category) {
+    setState(() {
+      if (category == 'All Jobs') {
+        _filteredOffers = context.read<OfferViewModel>().favoriteOffers;
+      } else {
+        final favoriteOffers = context.read<OfferViewModel>().favoriteOffers;
+        final Map<String, List<Offer>> filteredMap = {};
+
+        favoriteOffers.forEach((date, offers) {
+          final filteredOffers = offers.where((offer) {
+            return offer.category.contains(category);
+          }).toList();
+          if (filteredOffers.isNotEmpty) {
+            filteredMap[date] = filteredOffers;
+          }
+        });
+
+        _filteredOffers = filteredMap;
+      }
+    });
   }
 
   Widget _appBar() => Padding(
@@ -58,9 +114,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   Widget _searchWidget() => Padding(
         padding: const EdgeInsets.symmetric(horizontal: Dimensions.sm),
         child: TextField(
-        onChanged: (value) => setState(() {
-          
-        }),
+          onChanged: (value) => _search(value),
           decoration: InputDecoration(
             hintText: 'Search ',
             hintStyle: TextStyles.body0Semibold(color: Colors.grey.withOpacity(0.8)),
@@ -99,6 +153,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                 setState(() {
                   _currentIndex = index;
                 });
+                _filterByCategory(_searchItems[index]);
               },
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -132,11 +187,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       );
 
   Widget _favoriteOffersWidget() {
-    final favoriteViewModel = context.watch<OfferViewModel>();
     return Column(
-      children: 
-      
-      favoriteViewModel.favoriteOffers.keys.map((date) {
+      children: _filteredOffers.keys.map((date) {
         return Column(
           children: [
             _favoriteOfferInDay(date: date),
@@ -148,7 +200,6 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   }
 
   Widget _favoriteOfferInDay({required String date}) {
-    final favoriteViewModel = context.watch<OfferViewModel>();
     DateTime parsedDate = DateTime.parse(date);
     String formattedDate = DateFormat("dd MMMM, yyyy", "fr").format(parsedDate);
     return Padding(
@@ -159,8 +210,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           Text(formattedDate, style: TextStyles.body1Medium(color: Colors.grey.shade500)),
           mdSpacer(),
           Column(
-            
-            children: favoriteViewModel.favoriteOffers[date]!
+            children: _filteredOffers[date]!
                 .map((offer) {
                   return _favoriteOfferCard(offer);
                 })
@@ -286,6 +336,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return _body();
+    return Scaffold(
+      body: _body(),
+    );
   }
 }
